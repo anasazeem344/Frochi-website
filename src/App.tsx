@@ -1120,7 +1120,7 @@ export default function App() {
       </section>
 
       {/* OUR FLAVOURS — cup showcase (center cup large, side cups smaller, evenly spaced) */}
-      <section id="our-flavours" className="relative py-24 px-6 sm:px-10 lg:px-16 overflow-hidden border-t-2 border-[#efece2]">
+      <section id="our-flavours" className="relative py-24 px-6 sm:px-10 lg:px-16 overflow-hidden border-t-2 border-[#efece2] z-0">
         {/* Ambient backdrop: brand-color soft glow, then store photo layered on top at low opacity */}
         <div className="absolute inset-0 -z-10 bg-[#fdfcf8]">
           <div className="absolute -top-10 left-[12%] w-[420px] h-[420px] bg-[#82298a]/10 rounded-full blur-[110px]" />

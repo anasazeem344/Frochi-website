@@ -1,7 +1,7 @@
 export function generateWordPressCode(): { html: string; css: string; js: string } {
   const html = `<!-- Frochi Interactive 3D Smoothie Selector (WordPress Ready HTML) -->
 <div id="frochi-container" class="frochi-wp-wrapper">
-
+  
   <!-- Left Floating Wave Elements -->
   <div class="frochi-decor-wave"></div>
 
@@ -54,9 +54,43 @@ export function generateWordPressCode(): { html: string; css: string; js: string
     </div>
   </section>
 
+  <!-- OUR FLAVOURS SECTION -->
+  <section class="frochi-our-flavours" id="our-flavours">
+    <div class="our-flavours-header" id="our-flavours-header">
+      <span class="section-tag flavours-reveal">
+        <span class="tag-line"></span>Our Flavours<span class="tag-line"></span>
+      </span>
+      <h2 class="section-title flavours-reveal">Crafted for Pure Good Energy</h2>
+      <svg width="84" height="64" viewBox="0 0 84 64" fill="none" style="display: block; margin: 8px auto 0 auto; color: rgba(44,33,51,0.6);">
+        <path d="M4 6 C42 2 66 12 60 32 C54 52 36 48 40 33" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        <path d="M33 36 L40 33 L43 42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
+    <div class="our-flavours-stage" id="our-flavours-stage">
+      <div class="our-flavours-track" id="our-flavours-track">
+        <!-- Rendered via JS -->
+      </div>
+      
+      <!-- Morphing blob backdrop -->
+      <div class="our-flavours-blob" id="our-flavours-blob" style="border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: translate(-50%) rotate(0deg);"></div>
+      
+      <!-- Active cup details -->
+      <div class="our-flavours-details" id="our-flavours-details">
+        <h3 id="our-flavours-name"></h3>
+        <p id="our-flavours-desc"></p>
+      </div>
+    </div>
+  </section>
+
 </div>`;
 
   const css = `body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    body {
       margin: 0;
       padding: 0;
       background-color: #f5f5f5;
