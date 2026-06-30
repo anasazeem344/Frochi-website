@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frochi Smoothie Hub</title>
+    <!-- Prevent fatal TypeError when packages/proxies attempt to set window.fetch inside sandbox iframes. -->
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var currentFetch = originalFetch;
+          
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              // Ensure we return a function bound to window to prevent "Illegal invocation" errors
+              if (currentFetch === originalFetch && typeof originalFetch === 'function') {
+                return originalFetch.bind(window);
+              }
+              return currentFetch;
+            },
+            set: function(val) {
+              console.warn("Intercepted window.fetch assignment: ", val);
+              if (typeof val === 'function') {
+                currentFetch = val;
+              }
+            },
+            configurable: true,
+            enumerable: true
+          });
+          console.log("Applied robust window.fetch safety wrapper.");
+        } catch (e) {
+          console.warn("Failed to apply window.fetch safety wrapper:", e);
+        }
+
+        // Intercept JSON.parse to robustly prevent "undefined is not valid JSON" uncaught exceptions.
+        try {
+          var originalParse = JSON.parse;
+          JSON.parse = function(text, reviver) {
+            if (text === undefined || text === "undefined" || (typeof text === 'string' && text.trim() === 'undefined')) {
+              console.warn("Intercepted JSON.parse on undefined text parameter, returning undefined.");
+              return undefined;
+            }
+            return originalParse(text, reviver);
+          };
+          console.log("Applied robust JSON.parse safety wrapper.");
+        } catch (e) {
+          console.warn("Failed to apply JSON.parse safety wrapper:", e);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

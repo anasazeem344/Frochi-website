@@ -1,0 +1,6 @@
+{
+  "name": "Frochi Smoothies",
+  "description": "Interactive Frochi landing page, custom probiotic froyo mixer, and WordPress modular code generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

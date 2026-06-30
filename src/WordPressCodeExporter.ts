@@ -1,0 +1,1770 @@
+export function generateWordPressCode(): { html: string; css: string; js: string } {
+  const html = `<!-- Frochi Interactive 3D Smoothie Selector (WordPress Ready HTML) -->
+<div id="frochi-container" class="frochi-wp-wrapper">
+
+  <!-- Left Floating Wave Elements -->
+  <div class="frochi-decor-wave"></div>
+
+  <!-- FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint -->
+  <section class="frochi-flow-section" id="flow-section">
+    <img src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png" alt="Flow" referrerpolicy="no-referrer" />
+  </section>
+
+  <!-- BRAND STORY SECTION -->
+  <section class="frochi-story" id="frochi-story">
+
+    <!-- Centered editorial header, matching the header pattern used by every other section -->
+    <div class="story-header" id="story-header">
+      <span class="section-tag story-reveal">
+        <span class="tag-line"></span>Our Story<span class="tag-line"></span>
+      </span>
+      <h2 class="section-title story-reveal">Australian Bliss in the Heart of Dubai</h2>
+      <p class="story-lead story-reveal">
+        Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.
+      </p>
+    </div>
+
+    <!-- Visual proof row: photo paired with the brand-meaning quote -->
+    <div class="story-grid">
+      <div class="story-image-column" id="story-image-column">
+        <div class="story-blob" aria-hidden="true"></div>
+        <div class="story-badge">Est. 2024 · Dubai</div>
+        <img class="story-img" src="https://frochi.ae/wp-content/uploads/2025/07/team.png" alt="Muhammad and Abdullah Rashid" referrerpolicy="no-referrer" />
+        <div class="story-founders-chip">
+          <div class="story-founders-avatars">
+            <span>MR</span>
+            <span>AR</span>
+          </div>
+          <p>Muhammad &amp; Abdullah Rashid<span class="role">Founders</span></p>
+        </div>
+      </div>
+
+      <div class="story-quote-panel" id="story-quote-panel">
+        <span class="quote-mark" aria-hidden="true">&#8220;</span>
+        <p>Where <strong>"Fro"</strong> stands for frozen, and <strong>"Chi"</strong> represents flow, balance, and good energy.</p>
+      </div>
+    </div>
+
+    <!-- Facts strip -->
+    <div class="story-facts" id="story-facts">
+      <div class="story-fact story-reveal"><span class="fact-lbl">Founded</span><span class="fact-val">2024</span></div>
+      <div class="story-fact story-reveal"><span class="fact-lbl">Heritage</span><span class="fact-val">Australian</span></div>
+      <div class="story-fact story-reveal"><span class="fact-lbl">Home</span><span class="fact-val">Dubai, UAE</span></div>
+      <div class="story-fact story-reveal"><span class="fact-lbl">Promise</span><span class="fact-val">100% Natural</span></div>
+    </div>
+  </section>
+
+</div>`;
+
+  const css = `body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    /* Frochi Brand Styles (WordPress Integration Compatible) */
+:root {
+  --frochi-purple: #82298a;
+  --frochi-purple-light: #ebd0e4;
+  --frochi-orange: #fbae17;
+  --frochi-orange-light: #ffe6cb;
+  --frochi-green: #60bb49;
+  --frochi-green-light: #e8eeae;
+  --frochi-transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Poppins", "Helvetica Neue", sans-serif;
+}
+
+.frochi-wp-wrapper {
+  font-family: var(--font-body);
+  background-color: #fbfbf6;
+  color: #2a2230;
+  overflow-x: clip;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.frochi-wp-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Header & Nav */
+.frochi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+  background: white;
+  border-bottom: 2px solid #f3eedd;
+}
+
+.frochi-brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--frochi-purple);
+  font-family: var(--font-display);
+}
+
+.frochi-smile-o {
+  color: var(--frochi-orange);
+  position: relative;
+  display: inline-block;
+}
+
+.frochi-smile-o::after {
+  content: "◡";
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.frochi-nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #6a6470;
+  font-weight: 500;
+  transition: var(--frochi-transition);
+}
+
+.frochi-nav a:hover, .frochi-nav a.active {
+  color: var(--frochi-purple);
+}
+
+/* Hero Section */
+.frochi-hero {
+  padding: 60px 40px;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8f0 100%);
+  position: relative;
+}
+
+.frochi-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1s 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .frochi-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.frochi-display-title {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--frochi-purple);
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  transition: var(--frochi-transition);
+}
+
+.frochi-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--frochi-orange);
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.frochi-desc {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+/* Nutrients */
+.frochi-nutrients {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.nutrient-badge {
+  background: white;
+  border: 1px solid #efe9dc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 110px;
+}
+
+.badge-lbl {
+  font-size: 12px;
+  color: #8c8894;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.badge-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* CTAs */
+.frochi-hero-ctas {
+  display: flex;
+  gap: 16px;
+}
+
+.frochi-btn-primary {
+  background-color: var(--frochi-purple);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(130, 41, 138, 0.2);
+  transition: var(--frochi-transition);
+}
+
+.frochi-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(130, 41, 138, 0.3);
+}
+
+.frochi-btn-secondary {
+  background-color: white;
+  border: 2px solid #e2dbce;
+  color: #333;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--frochi-transition);
+}
+
+.frochi-btn-secondary:hover {
+  background-color: #faf9f6;
+  border-color: #333;
+}
+
+/* Cup Stage */
+.frochi-cup-stage {
+  position: relative;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frochi-cup-wrap {
+  position: relative;
+  z-index: 2;
+  animation: floatCup 6s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.frochi-main-cup {
+  max-width: 320px;
+  height: auto;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+
+.frochi-fruit {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 3;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.fruit-1 { top: 20%; left: 10%; animation: floatItem 8s ease-in-out infinite; }
+.fruit-2 { top: 15%; right: 15%; animation: floatItem 9s ease-in-out infinite 1s; }
+.fruit-3 { bottom: 20%; right: 20%; animation: floatItem 10s ease-in-out infinite 2s; }
+
+@keyframes floatCup {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatItem {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(15deg); }
+}
+
+@keyframes morphBlob {
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  50% {
+    border-radius: 42% 58% 30% 70% / 30% 70% 30% 70%;
+    transform: translateX(-50%) rotate(180deg);
+  }
+  75% {
+    border-radius: 60% 40% 70% 30% / 50% 50% 50% 50%;
+    transform: translateX(-50%) rotate(270deg);
+  }
+}
+
+
+/* Flow Section */
+.frochi-flow-section {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.frochi-flow-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Brand Story */
+.frochi-story {
+  position: relative;
+  padding: 96px 40px;
+  background-color: transparent;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Centered editorial header */
+.story-header {
+  max-width: 680px;
+  margin: 0 auto 72px auto;
+  text-align: center;
+}
+
+.story-lead {
+  color: #555;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Visual proof row: photo + quote panel */
+.story-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  align-items: stretch;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 900px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}
+
+/* Image column */
+.story-image-column {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 32px 0;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.story-image-column.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.story-blob {
+  position: absolute;
+  width: 88%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, rgba(232, 238, 174, 0.6), rgba(130, 41, 138, 0.1));
+  filter: blur(40px);
+  z-index: 0;
+  animation: storyBlobMorph 12s ease-in-out infinite;
+}
+
+@keyframes storyBlobMorph {
+  0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+  50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+}
+
+.story-badge {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  z-index: 2;
+  background-color: var(--frochi-orange);
+  color: #2C2133;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: scale(0.4) rotate(-25deg);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s, opacity 0.5s ease 0.4s;
+}
+
+.story-image-column.is-visible .story-badge {
+  transform: scale(1) rotate(-8deg);
+  opacity: 1;
+}
+
+.story-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 32px;
+  border: 4px solid #fff;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+  transform: rotate(-2deg);
+  transition: transform 0.5s ease-out;
+}
+
+.story-img:hover {
+  transform: rotate(0deg) scale(1.015);
+}
+
+.story-founders-chip {
+  position: absolute;
+  bottom: -24px;
+  right: 8px;
+  z-index: 2;
+  background: #fff;
+  border: 1px solid #efece2;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 12px 16px;
+  max-width: 190px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+.story-image-column.is-visible .story-founders-chip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-founders-avatars {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.story-founders-avatars span {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.story-founders-avatars span:first-child { background-color: var(--frochi-purple); }
+.story-founders-avatars span:last-child { background-color: var(--frochi-orange); margin-left: -10px; }
+
+.story-founders-chip p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.story-founders-chip span.role {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* Scroll-reveal (shared by header, image column, quote panel, facts strip) */
+.story-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.is-visible .story-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-visible .story-reveal:nth-child(1) { transition-delay: 0s; }
+.is-visible .story-reveal:nth-child(2) { transition-delay: 0.1s; }
+.is-visible .story-reveal:nth-child(3) { transition-delay: 0.2s; }
+.is-visible .story-reveal:nth-child(4) { transition-delay: 0.3s; }
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--frochi-purple);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.section-tag .tag-line {
+  width: 24px;
+  height: 1px;
+  background-color: var(--frochi-purple);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
+  color: #1a1622;
+}
+
+@media (min-width: 900px) {
+  .section-title {
+    font-size: 56px;
+  }
+}
+
+/* Quote panel */
+.story-quote-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fcfbf7;
+  border: 1px solid #efe9dc;
+  border-radius: 32px;
+  padding: 48px 32px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.1s, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+
+@media (min-width: 640px) {
+  .story-quote-panel {
+    padding: 64px 56px;
+  }
+}
+
+.story-quote-panel.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.story-quote-panel .quote-mark {
+  position: absolute;
+  top: 8px;
+  left: 24px;
+  font-family: var(--font-display);
+  font-size: 140px;
+  line-height: 1;
+  color: rgba(130, 41, 138, 0.06);
+  user-select: none;
+}
+
+.story-quote-panel p {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--frochi-purple);
+  line-height: 1.35;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .story-quote-panel p {
+    font-size: 30px;
+  }
+}
+
+.story-quote-panel strong {
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* Facts strip */
+.story-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 32px;
+  padding-top: 40px;
+  border-top: 1px solid #efece2;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .story-facts {
+    grid-template-columns: repeat(4, 1fr);
+    text-align: left;
+  }
+}
+
+.story-fact .fact-lbl {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #999;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.story-fact .fact-val {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1622;
+}
+
+.voice-badge {
+  background-color: #fbfaf5;
+  border: 1px dashed var(--frochi-orange);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Our Flavours: depth-of-field cup showcase */
+.frochi-our-flavours {
+  position: relative;
+  padding: 90px 20px;
+  overflow: hidden;
+  border-top: 2px solid #efece2;
+  /* store photo at low opacity: tinted with the page background color so it reads as a faint backdrop, not a full-strength photo */
+  background-image: linear-gradient(rgba(253, 252, 248, 0.72), rgba(253, 252, 248, 0.72)), url('https://frochi.ae/wp-content/uploads/2026/06/store-scaled.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.frochi-our-flavours::before,
+.frochi-our-flavours::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.frochi-our-flavours::before {
+  top: -40px;
+  left: 12%;
+  width: 420px;
+  height: 420px;
+  background: rgba(130, 41, 138, 0.1);
+}
+
+.frochi-our-flavours::after {
+  bottom: -40px;
+  right: 14%;
+  width: 380px;
+  height: 380px;
+  background: rgba(251, 174, 23, 0.15);
+}
+
+.our-flavours-heading {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.our-flavours-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #2C2133;
+  margin: 0;
+}
+
+.our-flavours-arrow {
+  color: rgba(44, 33, 51, 0.6);
+  margin-top: 4px;
+}
+
+.our-flavours-stage {
+  position: relative;
+  z-index: 1;
+  height: 520px;
+  margin: 0 -20px;
+}
+
+@media (min-width: 640px) {
+  .our-flavours-stage {
+    height: 580px;
+  }
+}
+
+.our-flavours-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  /* width is set in JS to (N-1)*gap + stageWidth, so the hit area always fully covers
+     the visible stage no matter how far the track has translated */
+  touch-action: pan-y;
+  cursor: grab;
+  z-index: 10; /* between the white circle (z-index 5) and the flavor text (z-index 60) */
+}
+
+.our-flavours-track:active {
+  cursor: grabbing;
+}
+
+.our-flavours-cup {
+  position: absolute;
+  top: 152px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: grab;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+.our-flavours-cup img {
+  height: 240px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+}
+
+@media (min-width: 640px) {
+  .our-flavours-cup {
+    top: 184px;
+  }
+  .our-flavours-cup img {
+    height: 320px;
+  }
+}
+
+.our-flavours-circle {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%) rotate(0deg);
+  z-index: 5;
+  width: 240px;
+  height: 240px;
+  background: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  animation: morphBlob 12s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .our-flavours-circle {
+    width: 320px;
+    height: 320px;
+    bottom: 46px;
+  }
+}
+
+.our-flavours-text {
+  position: absolute;
+  left: 50%;
+  bottom: 134px;
+  transform: translateX(-50%);
+  z-index: 60;
+  width: 240px;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .our-flavours-text {
+    width: 320px;
+    bottom: 100px;
+  }
+}
+
+.our-flavours-text h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: #2C2133;
+  margin: 0 0 8px 0;
+}
+
+.our-flavours-text p {
+  font-size: 13px;
+  color: #6b7280;
+  max-width: 200px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Gallery Section */
+.frochi-gallery {
+  padding: 96px 40px;
+  background-color: white;
+  border-bottom: 1px solid #f3f4f6;
+  position: relative;
+  z-index: 10;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 950px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.gallery-inner-container {
+  position: relative;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 900px;
+}
+
+@media (min-width: 768px) {
+  .frochi-gallery {
+    min-height: 1450px;
+  }
+  .gallery-inner-container {
+    height: 1350px;
+  }
+}
+
+.gallery-header {
+  max-width: 600px;
+  margin: 0 auto 8px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 25;
+  transform-origin: center;
+}
+
+.gallery-logo {
+  height: 64px;
+  width: auto;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--frochi-purple);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .gallery-title {
+    font-size: 48px;
+  }
+}
+
+.gallery-header-subtext {
+  margin-top: 16px;
+  padding: 0 16px;
+  text-align: center;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.gallery-subtext-bold {
+  color: var(--frochi-purple);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.gallery-subtext-regular {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 8px 0 0 0;
+  line-height: 1.6;
+}
+
+.gallery-grid-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid-wrapper {
+    position: absolute;
+    top: 260px;
+    left: 0;
+    right: 0;
+    height: 1100px;
+  }
+}
+
+.gallery-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 32px;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 0;
+  }
+}
+
+.frochi-gallery-card {
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #f3eedd;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .frochi-gallery-card {
+    position: absolute;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease, transform 0.1s ease-out; /* smooth scroll transforms */
+  }
+  .frochi-gallery-card[data-idx="0"] { top: 0%; left: 0%; width: 44%; z-index: 30; }
+  .frochi-gallery-card[data-idx="1"] { top: 0%; left: 56%; width: 44%; z-index: 30; }
+  .frochi-gallery-card[data-idx="2"] { top: 35%; left: 0%; width: 44%; z-index: 20; }
+  .frochi-gallery-card[data-idx="3"] { top: 35%; left: 56%; width: 44%; z-index: 20; }
+  .frochi-gallery-card[data-idx="4"] { top: 70%; left: 0%; width: 44%; z-index: 10; }
+  .frochi-gallery-card[data-idx="5"] { top: 70%; left: 56%; width: 44%; z-index: 10; }
+}
+
+.frochi-gallery-card:hover {
+  box-shadow: 0 10px 30px rgba(130, 41, 138, 0.15);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.frochi-gallery-card:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+.gallery-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(90, 28, 97, 0.95) 0%, rgba(90, 28, 97, 0.45) 50%, transparent 100%);
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+.frochi-gallery-card:hover .gallery-card-overlay {
+  opacity: 1;
+}
+
+.gallery-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  text-align: left;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.gallery-card-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 4px 0 0 0;
+  font-weight: 500;
+}
+
+.gallery-landing-cup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 448px;
+  margin: 16px auto;
+  z-index: 30;
+  pointer-events: none;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .gallery-landing-cup-container {
+    position: absolute;
+    top: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+}
+
+.gallery-cup-target {
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .gallery-cup-target {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+.gallery-landed-cup {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+}
+
+@media (min-width: 768px) {
+  .gallery-landed-cup {
+    display: none;
+  }
+}
+
+.gallery-landing-subtext {
+  padding: 0 16px;
+}
+
+.frochi-canvas-wrapper {
+  position: relative;
+  background-color: #FAFAEC;
+  overflow: hidden;
+  border-top: 2px solid #efece2;
+}
+
+#tubes-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}`;
+
+  const js = `// Frochi Interactive Smoothie Controller (Vanilla JS Dependency-Free)
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Dynamic Tubes Cursor Background
+  var canvas = document.getElementById("tubes-canvas");
+  if (canvas) {
+    import("https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js")
+      .then(function (module) {
+        var TubesCursor = module.default;
+        var appInstance = TubesCursor(canvas, {
+          tubes: {
+            colors: ["#82298a", "#60bb49", "#fbae17"],
+            lights: {
+              intensity: 150,
+              colors: ["#82298a", "#60bb49", "#fbae17", "#ffffff"]
+            }
+          }
+        });
+
+        // Search for and configure WebGLRenderer / Scene to support transparency and clear colors
+        if (appInstance) {
+          for (var key in appInstance) {
+            var val = appInstance[key];
+            if (val && typeof val === "object") {
+              if (val.isWebGLRenderer) {
+                val.setClearColor(0xFAFAEC, 0);
+              }
+              if (val.isScene) {
+                val.background = null;
+              }
+            }
+          }
+        }
+      })
+      .catch(function (err) {
+        console.error("Failed to load TubesCursor:", err);
+      });
+  }
+  
+  // Data Bank match to brand definitions
+  const flavors = [
+    {
+      id: "acai",
+      name: "Acai",
+      subtitle: "Antioxidant Rich | Tropical Twist | Pure Berries",
+      desc: "Packed with antioxidants and a tropical twist",
+      bgLight: "#ebd0e4",
+      bgDark: "#82298a",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/09/Blueberries.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/07/strbry-circle.png",
+        "https://frochi.ae/wp-content/uploads/2025/09/Cherries.jpeg"
+      ],
+      nutri: ["5 Billion CFU", "190 kcal", "5.6g"]
+    },
+    {
+      id: "chocolate",
+      name: "Chocolate",
+      subtitle: "Decadent Froyo | Smooth Cocoa | Pure Delight",
+      desc: "Decadent and smooth.",
+      bgLight: "#efe6dd",
+      bgDark: "#5c3d2e",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/21-Chocolate-With-Topping-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/09/Chocolate-Chips.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Chocolate-Soil.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Kinder-Chocolate.jpeg"
+      ],
+      nutri: ["5 Billion CFU", "220 kcal", "2.8g"]
+    },
+    {
+      id: "coconut",
+      name: "Coconut",
+      subtitle: "Creamy Coconut | Plant-Based Froyo | Tropical Vibe",
+      desc: "Creamy and plant-based for a guilt-free dessert.",
+      bgLight: "#f2f4ee",
+      bgDark: "#6d775c",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/08-Coconut-Plain-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/09/Coconut-Shreds.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Pineapple.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg"
+      ],
+      nutri: ["5 Billion CFU", "185 kcal", "3.8g"]
+    },
+    {
+      id: "mango",
+      name: "Mango",
+      subtitle: "Mango Froyo | Fresh Mango Chunks | Tropical Burst",
+      desc: "A tropical burst of sunshine",
+      bgLight: "#fff3cc",
+      bgDark: "#fbae17",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/02-Mango-Plain-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/07/mango.png",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Coconut-Shreds.jpeg"
+      ],
+      nutri: ["5 Billion CFU", "180 kcal", "3.5g"]
+    },
+    {
+      id: "taro",
+      name: "Taro",
+      subtitle: "Nutty Taro | Sweet Vanilla | Creamy Vibes",
+      desc: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.",
+      bgLight: "#e2d9f3",
+      bgDark: "#68509c",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/09/Coconut-Shreds.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Blueberries.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg"
+      ],
+      nutri: ["5 Billion CFU", "195 kcal", "3.5g"]
+    },
+    {
+      id: "matcha",
+      name: "Matcha",
+      subtitle: "Japanese Matcha | Earthy Blend | Natural Energy",
+      desc: "A vibrant, earthy blend rich in antioxidants and natural energy.",
+      bgLight: "#e8eeae",
+      bgDark: "#60bb49",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png",
+      fruits: [
+        "https://frochi.ae/wp-content/uploads/2025/09/Avocado.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Kiwi.jpeg"
+      ],
+      nutri: ["6 Billion CFU", "175 kcal", "4.5g"]
+    }
+  ];
+
+  // Our Flavours: dedicated lineup/order for this showcase only (independent of the "flavors" data bank above)
+  const ourFlavoursList = [
+    { id: "acai", name: "Acai", desc: "Packed with antioxidants and a tropical twist", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png" },
+    { id: "chocolate", name: "Chocolate", desc: "Decadent and smooth.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Chocolate-Plain-HR-WB.png" },
+    { id: "coconut", name: "Coconut", desc: "Creamy and plant-based for a guilt-free dessert.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/08-Coconut-Plain-Cutout.png" },
+    { id: "salted-caramel", name: "Salted Caramel", desc: "A deliciously decadent twist on the classic caramel favorite.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png" },
+    { id: "taro", name: "Taro", desc: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png" },
+    { id: "matcha", name: "Matcha", desc: "A vibrant, earthy blend rich in antioxidants and natural energy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png" },
+    { id: "mango", name: "Mango", desc: "A tropical burst of sunshine", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/02-Mango-Plain-Cutout.png" },
+    { id: "strawberry", name: "Strawberry", desc: "Sweet and vibrant.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/03-Strawberry-Plain-Cutout.png" },
+    { id: "original-yogurt", name: "Original Yogurt", desc: "Classic, tangy, and refreshingly creamy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Original-Plain-Cutout.png" },
+    { id: "blue-bubblegum", name: "Blue Bubblegum", desc: "A whimsical treat loved by all ages.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/04-Blue-Bubble-Gum-Plain-Cutout.png" }
+  ];
+
+  // Our Flavours: draggable/swipeable cup carousel with momentum-snap (mirrors the React app's behavior)
+  const ourFlavoursStage = document.getElementById("our-flavours-stage");
+  const ourFlavoursTrack = document.getElementById("our-flavours-track");
+  const ourFlavoursName = document.getElementById("our-flavours-name");
+  const ourFlavoursDesc = document.getElementById("our-flavours-desc");
+
+  let ourFlavoursIdx = 0;
+  let ourFlavoursGap = 260;
+  let ourFlavoursX = 0;
+  let ourFlavoursCupEls = [];
+  let ourFlavoursDragging = false;
+  let ourFlavoursWasDragged = false;
+  let ourFlavoursDragStartClientX = 0;
+  let ourFlavoursDragStartX = 0;
+  let ourFlavoursLastMoveX = 0;
+  let ourFlavoursLastMoveT = 0;
+  let ourFlavoursVelocity = 0;
+  let ourFlavoursStageWidth = 1000;
+
+  function ourFlavoursClamp(x) {
+    const min = -(ourFlavoursList.length - 1) * ourFlavoursGap;
+    return Math.max(min, Math.min(0, x));
+  }
+
+  function ourFlavoursApplyVisuals() {
+    ourFlavoursCupEls.forEach(function (btn, idx) {
+      const dist = Math.abs(idx * ourFlavoursGap + ourFlavoursX) / ourFlavoursGap;
+      const scale = Math.max(1.15 - dist * 0.27, 0.5);
+      const opacity = Math.max(1 - dist * 0.3, 0.3);
+      const z = Math.round(Math.max(50 - dist * 10, 1));
+      btn.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
+      btn.style.opacity = String(opacity);
+      btn.style.zIndex = String(z);
+    });
+    if (ourFlavoursTrack) {
+      ourFlavoursTrack.style.transform = "translateX(" + ourFlavoursX + "px)";
+    }
+  }
+
+  function ourFlavoursBuildCups() {
+    if (!ourFlavoursTrack) return;
+    ourFlavoursTrack.innerHTML = "";
+    ourFlavoursCupEls = ourFlavoursList.map(function (f, idx) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "our-flavours-cup";
+      btn.style.left = (ourFlavoursStageWidth / 2 + idx * ourFlavoursGap) + "px";
+      btn.setAttribute("aria-label", "Show " + f.name + " flavour");
+      const img = document.createElement("img");
+      img.src = f.cupImg;
+      img.alt = f.name;
+      img.referrerPolicy = "no-referrer";
+      img.draggable = false;
+      btn.appendChild(img);
+      btn.addEventListener("click", function (e) {
+        if (ourFlavoursWasDragged) { e.preventDefault(); return; }
+        ourFlavoursSnapTo(idx);
+      });
+      ourFlavoursTrack.appendChild(btn);
+      return btn;
+    });
+  }
+
+  function ourFlavoursMeasure() {
+    if (!ourFlavoursStage) return;
+    const w = ourFlavoursStage.getBoundingClientRect().width || 1000;
+    ourFlavoursGap = w * 0.23;
+    ourFlavoursStageWidth = w;
+    if (ourFlavoursTrack) {
+      ourFlavoursTrack.style.width = ((ourFlavoursList.length - 1) * ourFlavoursGap + ourFlavoursStageWidth) + "px";
+    }
+    ourFlavoursCupEls.forEach(function (btn, idx) {
+      btn.style.left = (ourFlavoursStageWidth / 2 + idx * ourFlavoursGap) + "px";
+    });
+    ourFlavoursX = ourFlavoursClamp(-ourFlavoursIdx * ourFlavoursGap);
+    ourFlavoursApplyVisuals();
+  }
+
+  function ourFlavoursSetTransition(value) {
+    if (ourFlavoursTrack) ourFlavoursTrack.style.transition = value;
+    ourFlavoursCupEls.forEach(function (btn) { btn.style.transition = value; });
+  }
+
+  function ourFlavoursSnapTo(idx) {
+    const clampedIdx = Math.max(0, Math.min(ourFlavoursList.length - 1, idx));
+    ourFlavoursIdx = clampedIdx;
+    ourFlavoursX = ourFlavoursClamp(-clampedIdx * ourFlavoursGap);
+    ourFlavoursSetTransition("transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease");
+    ourFlavoursApplyVisuals();
+    if (ourFlavoursName) ourFlavoursName.textContent = ourFlavoursList[clampedIdx].name;
+    if (ourFlavoursDesc) ourFlavoursDesc.textContent = ourFlavoursList[clampedIdx].desc;
+  }
+
+  function ourFlavoursOnPointerDown(e) {
+    ourFlavoursDragging = true;
+    ourFlavoursWasDragged = false;
+    ourFlavoursVelocity = 0;
+    ourFlavoursDragStartClientX = e.clientX;
+    ourFlavoursDragStartX = ourFlavoursX;
+    ourFlavoursLastMoveX = e.clientX;
+    ourFlavoursLastMoveT = performance.now();
+    ourFlavoursSetTransition("none");
+    if (ourFlavoursTrack && ourFlavoursTrack.setPointerCapture) {
+      try { ourFlavoursTrack.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+  }
+
+  function ourFlavoursOnPointerMove(e) {
+    if (!ourFlavoursDragging) return;
+    const dx = e.clientX - ourFlavoursDragStartClientX;
+    if (Math.abs(dx) > 4) ourFlavoursWasDragged = true;
+    ourFlavoursX = ourFlavoursClamp(ourFlavoursDragStartX + dx);
+
+    const now = performance.now();
+    const dt = now - ourFlavoursLastMoveT;
+    if (dt > 0) ourFlavoursVelocity = (e.clientX - ourFlavoursLastMoveX) / dt;
+    ourFlavoursLastMoveX = e.clientX;
+    ourFlavoursLastMoveT = now;
+
+    ourFlavoursApplyVisuals();
+  }
+
+  function ourFlavoursOnPointerUp() {
+    if (!ourFlavoursDragging) return;
+    ourFlavoursDragging = false;
+    const projected = ourFlavoursX + ourFlavoursVelocity * 150;
+    ourFlavoursSnapTo(Math.round(-projected / ourFlavoursGap));
+  }
+
+  ourFlavoursBuildCups();
+  ourFlavoursMeasure();
+  if (ourFlavoursTrack) {
+    ourFlavoursTrack.addEventListener("pointerdown", ourFlavoursOnPointerDown);
+  }
+  window.addEventListener("pointermove", ourFlavoursOnPointerMove);
+  window.addEventListener("pointerup", ourFlavoursOnPointerUp);
+  window.addEventListener("pointercancel", ourFlavoursOnPointerUp);
+  window.addEventListener("resize", ourFlavoursMeasure);
+
+  
+
+  let activeIndex = 0;
+  
+  
+  
+  
+  // Cache DOM
+  const titleEl = document.getElementById("frochi-active-title");
+  const subtitleEl = document.getElementById("frochi-active-subtitle");
+  const descEl = document.getElementById("frochi-active-desc");
+  const cupImgEl = document.getElementById("frochi-active-cup");
+  
+  const nutriPro = document.getElementById("nutri-probiotics");
+  const nutriCal = document.getElementById("nutri-calories");
+  const nutriFib = document.getElementById("nutri-fiber");
+  
+  const nextBtn = document.getElementById("frochi-next-flavor-btn");
+  const cupWrap = document.getElementById("frochi-cup-wrap");
+  
+  
+  
+  
+  
+  
+  
+  
+
+  // Carousel slider animation
+  function updateFlavor(idx) {
+    const f = flavors[idx];
+    
+    // Animate out cup
+    cupWrap.style.transform = "scale(0.8) rotate(-15deg)";
+    cupWrap.style.opacity = "0.2";
+    
+    setTimeout(() => {
+      // Set values
+      titleEl.innerText = f.name;
+      subtitleEl.innerText = f.subtitle;
+      descEl.innerText = f.desc;
+      cupImgEl.src = f.cupImg;
+      cupImgEl.style.filter = "drop-shadow(0 20px 40px #82298a55)";
+      const galleryCupImg = document.getElementById("gallery-cup-img");
+      if (galleryCupImg) {
+        galleryCupImg.src = f.cupImg;
+        galleryCupImg.style.filter = "drop-shadow(0 20px 40px #82298a55)";
+      }
+      
+      nutriPro.innerText = f.nutri[0];
+      nutriCal.innerText = f.nutri[1];
+      nutriFib.innerText = f.nutri[2];
+      
+      // Update floating fruits
+      document.getElementById("fr-item-1").style.backgroundImage = \`url('\${f.fruits[0]}')\`;
+      document.getElementById("fr-item-2").style.backgroundImage = \`url('\${f.fruits[1]}')\`;
+      document.getElementById("fr-item-3").style.backgroundImage = \`url('\${f.fruits[2]}')\`;
+
+      // Animate back in
+      cupWrap.style.transform = "scale(1.1) rotate(5deg)";
+      cupWrap.style.opacity = "1";
+      setTimeout(() => {
+        cupWrap.style.transform = "";
+      }, 300);
+    }, 300);
+  }
+
+  nextBtn.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % flavors.length;
+    updateFlavor(activeIndex);
+  });
+
+  // Load interactive customizer bases
+  // Parallax scroll handler
+  let transitionOffsets = { x: 0, y: 0 };
+  let isDesktop = window.innerWidth >= 768;
+
+
+  function calculateOffsets() {
+    isDesktop = window.innerWidth >= 768;
+    const heroCup = document.getElementById("frochi-cup-wrap-placeholder");
+    const targetAnchor = document.getElementById("gallery-cup-target");
+    if (heroCup && targetAnchor) {
+      const heroRect = heroCup.getBoundingClientRect();
+      const targetRect = targetAnchor.getBoundingClientRect();
+      
+      // Calculate document-relative coordinates
+      const heroTop = heroRect.top + window.scrollY;
+      const heroLeft = heroRect.left + window.scrollX;
+      
+      const targetTop = targetRect.top + window.scrollY;
+      const targetLeft = targetRect.left + window.scrollX;
+      
+      // Align centers
+      const xDiff = (targetLeft + targetRect.width / 2) - (heroLeft + heroRect.width / 2);
+      const yDiff = (targetTop + targetRect.height / 2) - (heroTop + heroRect.height / 2);
+      
+      transitionOffsets = { x: xDiff, y: yDiff };
+
+      // Apply offset transform immediately if not animating (to prevent jump on resize)
+      if (!isAnimating) {
+        const realCup = document.getElementById("frochi-cup-wrap");
+        if (realCup && isDesktop) {
+          const xOffset = cupCurrent * transitionOffsets.x;
+          const yOffset = cupCurrent * transitionOffsets.y;
+          realCup.style.transform = "translate(" + xOffset + "px, " + yOffset + "px)";
+        }
+      }
+    }
+  }
+
+  // Calculate coordinates
+  window.addEventListener("resize", calculateOffsets);
+  setTimeout(calculateOffsets, 600);
+
+  // Cinematic scroll snap controller
+  let isAnimatingScroll = false;
+  let lastScrollY = window.scrollY;
+
+  function smoothScrollTo(targetY, duration) {
+    isAnimatingScroll = true;
+    const startY = window.scrollY;
+    const difference = targetY - startY;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Cubic ease-in-out curve
+      const ease = progress < 0.5 
+        ? 4 * progress * progress * progress 
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      window.scrollTo(0, startY + difference * ease);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        lastScrollY = window.scrollY;
+        setTimeout(function() {
+          isAnimatingScroll = false;
+        }, 50);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener("scroll", function () {
+    const gallery = document.getElementById("gallery");
+    if (!gallery) return;
+
+    const rect = gallery.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const startScroll = windowHeight;
+    const endScroll = windowHeight * 0.2;
+
+    const totalDistance = startScroll - endScroll;
+    const currentDistance = startScroll - rect.top;
+
+    let progress = currentDistance / totalDistance;
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    if (isDesktop && !isAnimatingScroll) {
+      const scrollY = window.scrollY;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+
+      // 1. Hero -> Gallery snap
+      if (direction === "down" && lastScrollY <= 50 && scrollY > 50) {
+        const galleryTop = gallery.getBoundingClientRect().top + window.scrollY;
+        var cupTargetEl = document.getElementById("gallery-cup-target");
+        var snapTarget = galleryTop;
+        if (cupTargetEl) {
+          var cupRect = cupTargetEl.getBoundingClientRect();
+          var cupLandingBottom = cupRect.bottom + window.scrollY;
+          snapTarget = Math.max(0, cupLandingBottom - windowHeight + 40);
+        }
+        smoothScrollTo(snapTarget, 1200);
+        return;
+      }
+      // 2. Gallery -> Hero snap
+      else if (direction === "up" && lastScrollY >= (gallery.getBoundingClientRect().top + window.scrollY) - 10 && scrollY < (gallery.getBoundingClientRect().top + window.scrollY) - 80) {
+        smoothScrollTo(0, 1200);
+        return;
+      } else {
+        lastScrollY = scrollY;
+      }
+    } else if (isAnimatingScroll) {
+      lastScrollY = window.scrollY;
+    }
+// Apply quadratic ease-in-out curve
+    const easedProgress = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+    const cards = gallery.querySelectorAll(".frochi-gallery-card");
+    const galleryLandingCup = document.getElementById("gallery-landing-cup");
+    const galleryCupImg = document.getElementById("gallery-cup-img");
+    const heroCup = document.getElementById("frochi-cup-wrap");
+    const headerEl = document.getElementById("gallery-header");
+    const headerSubtext = document.getElementById("gallery-header-subtext");
+    const landingSubtext = document.getElementById("gallery-landing-subtext");
+
+    if (isDesktop) {
+      // 1. Animate header
+      if (headerEl) {
+        let headerProgress = easedProgress / 0.8;
+        headerProgress = Math.min(Math.max(headerProgress, 0), 1);
+        const headerY = 175 * headerProgress;
+        const headerScale = 0.95 + 0.05 * headerProgress;
+        headerEl.style.transform = "translateY(" + headerY + "px) scale(" + headerScale + ")";
+      }
+
+      // Header subtext is no longer faded — it was removed from the header block
+
+      // 2. Animate fanning cards
+      cards.forEach((card, idx) => {
+        const width = 44;
+        let targetRotate = 0;
+        if (idx % 2 === 0) {
+          if (idx === 0) targetRotate = -6;
+          else if (idx === 2) targetRotate = -10;
+          else if (idx === 4) targetRotate = -5;
+        } else {
+          if (idx === 1) targetRotate = 6;
+          else if (idx === 3) targetRotate = 10;
+          else if (idx === 5) targetRotate = 5;
+        }
+        const rotate = easedProgress * targetRotate;
+
+        let left = 0;
+        if (idx % 2 === 0) {
+          left = 0 + easedProgress * -15;
+        } else {
+          left = 56 + easedProgress * 15;
+        }
+
+        let top = 0;
+        if (idx === 0 || idx === 1) {
+          top = 0;
+        } else if (idx === 2 || idx === 3) {
+          top = 35;
+        } else if (idx === 4 || idx === 5) {
+          top = 70;
+        }
+        card.style.top = top + "%";
+        card.style.left = left + "%";
+        card.style.width = width + "%";
+        card.style.transform = "rotate(" + rotate + "deg)";
+      });
+
+      // 3. Drive cup position directly from scroll progress (sync with scroll)
+      var cupProgress = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      var heroCupEl = document.getElementById("frochi-cup-wrap");
+      if (heroCupEl && isDesktop) {
+        var xOffset = cupProgress * transitionOffsets.x;
+        var yOffset = cupProgress * transitionOffsets.y;
+        heroCupEl.style.transform = "translate(" + xOffset + "px, " + yOffset + "px)";
+        heroCupEl.style.zIndex = "50";
+        heroCupEl.style.opacity = "1";
+
+        var heroOpacity = Math.max(1 - cupProgress * 6.66, 0);
+        var fr1 = document.getElementById("fr-item-1");
+        var fr2 = document.getElementById("fr-item-2");
+        var fr3 = document.getElementById("fr-item-3");
+        if (fr1) fr1.style.opacity = heroOpacity;
+        if (fr2) fr2.style.opacity = heroOpacity;
+        if (fr3) fr3.style.opacity = heroOpacity;
+      }
+
+      var landingSubtextEl = document.getElementById("gallery-landing-subtext");
+      if (landingSubtextEl && isDesktop) {
+        // Moves down in parallax with scroll — more travel than header so it stays below the cup
+        var subtextProgress = Math.min(Math.max(easedProgress / 0.8, 0), 1);
+        var subtextY = 260 * subtextProgress;
+        landingSubtextEl.style.transform = "translateY(" + subtextY + "px)";
+        landingSubtextEl.style.opacity = "1";
+      }
+
+      if (galleryLandingCup) {
+        galleryLandingCup.style.opacity = "1";
+      }
+    } else {
+      if (headerEl) headerEl.style.transform = "";
+      if (headerSubtext) headerSubtext.style.opacity = "1";
+      if (landingSubtextEl) landingSubtextEl.style.transform = "";
+      if (galleryLandingCup) galleryLandingCup.style.opacity = "1";
+      if (galleryCupImg) galleryCupImg.style.transform = "";
+      if (heroCup) {
+        heroCup.style.opacity = "1";
+        heroCup.style.transform = "";
+      }
+
+      const fr1 = document.getElementById("fr-item-1");
+      const fr2 = document.getElementById("fr-item-2");
+      const fr3 = document.getElementById("fr-item-3");
+      if (fr1) fr1.style.opacity = "1";
+      if (fr2) fr2.style.opacity = "1";
+      if (fr3) fr3.style.opacity = "1";
+      
+      cards.forEach((card, idx) => {
+        card.style.top = "";
+        card.style.left = "";
+        card.style.width = "";
+        
+        let mobileRotate = 0;
+        if (idx === 0) mobileRotate = -2;
+        else if (idx === 1) mobileRotate = 2;
+        else if (idx === 2) mobileRotate = -1;
+        else if (idx === 3) mobileRotate = 1;
+        else if (idx === 4) mobileRotate = -2;
+        else if (idx === 5) mobileRotate = 2;
+        card.style.transform = "rotate(" + mobileRotate + "deg)";
+      });
+    }
+  });
+
+  // Brand Story: reveal-on-scroll (header, image column, quote panel, facts strip)
+  var storyRevealEls = [
+    document.getElementById("story-header"),
+    document.getElementById("story-image-column"),
+    document.getElementById("story-quote-panel"),
+    document.getElementById("story-facts")
+  ];
+  if ("IntersectionObserver" in window) {
+    var storyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          storyObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -80px 0px" });
+    storyRevealEls.forEach(function (el) { if (el) storyObserver.observe(el); });
+  } else {
+    storyRevealEls.forEach(function (el) { if (el) el.classList.add("is-visible"); });
+  }
+
+  // Init Actions
+  updateFlavor(0);
+
+
+  // Call once to initialize page state based on load scroll position
+  setTimeout(function() {
+    window.dispatchEvent(new Event("scroll"));
+  }, 100);
+});`;
+
+  return { html, css, js };
+}
