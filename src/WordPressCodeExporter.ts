@@ -1444,21 +1444,6 @@ document.addEventListener("DOMContentLoaded", function () {
       nutri: ["5 Billion CFU", "190 kcal", "5.6g"]
     },
     {
-      id: "chocolate",
-      name: "Chocolate",
-      subtitle: "Decadent Froyo | Smooth Cocoa | Pure Delight",
-      desc: "Decadent and smooth.",
-      bgLight: "#efe6dd",
-      bgDark: "#5c3d2e",
-      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/21-Chocolate-With-Topping-Cutout.png",
-      fruits: [
-        "https://frochi.ae/wp-content/uploads/2025/09/Chocolate-Chips.jpeg",
-        "https://frochi.ae/wp-content/uploads/2025/09/Chocolate-Soil.jpeg",
-        "https://frochi.ae/wp-content/uploads/2025/09/Kinder-Chocolate.jpeg"
-      ],
-      nutri: ["5 Billion CFU", "220 kcal", "2.8g"]
-    },
-    {
       id: "coconut",
       name: "Coconut",
       subtitle: "Creamy Coconut | Plant-Based Froyo | Tropical Vibe",
@@ -1474,19 +1459,19 @@ document.addEventListener("DOMContentLoaded", function () {
       nutri: ["5 Billion CFU", "185 kcal", "3.8g"]
     },
     {
-      id: "mango",
-      name: "Mango",
-      subtitle: "Mango Froyo | Fresh Mango Chunks | Tropical Burst",
-      desc: "A tropical burst of sunshine",
-      bgLight: "#fff3cc",
-      bgDark: "#fbae17",
-      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/02-Mango-Plain-Cutout.png",
+      id: "matcha",
+      name: "Matcha",
+      subtitle: "Japanese Matcha | Earthy Blend | Natural Energy",
+      desc: "A vibrant, earthy blend rich in antioxidants and natural energy.",
+      bgLight: "#e8eeae",
+      bgDark: "#60bb49",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png",
       fruits: [
-        "https://frochi.ae/wp-content/uploads/2025/07/mango.png",
+        "https://frochi.ae/wp-content/uploads/2025/09/Avocado.jpeg",
         "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg",
-        "https://frochi.ae/wp-content/uploads/2025/09/Coconut-Shreds.jpeg"
+        "https://frochi.ae/wp-content/uploads/2025/09/Kiwi.jpeg"
       ],
-      nutri: ["5 Billion CFU", "180 kcal", "3.5g"]
+      nutri: ["6 Billion CFU", "175 kcal", "4.5g"]
     },
     {
       id: "taro",
@@ -1504,34 +1489,28 @@ document.addEventListener("DOMContentLoaded", function () {
       nutri: ["5 Billion CFU", "195 kcal", "3.5g"]
     },
     {
-      id: "matcha",
-      name: "Matcha",
-      subtitle: "Japanese Matcha | Earthy Blend | Natural Energy",
-      desc: "A vibrant, earthy blend rich in antioxidants and natural energy.",
-      bgLight: "#e8eeae",
-      bgDark: "#60bb49",
-      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png",
+      id: "salted-caramel",
+      name: "Salted Caramel",
+      subtitle: "Sweet Caramel | Sea Salt | Decadent Taste",
+      desc: "A deliciously decadent twist on the classic caramel favorite.",
+      bgLight: "#fbf3db",
+      bgDark: "#ca8a04",
+      cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png",
       fruits: [
-        "https://frochi.ae/wp-content/uploads/2025/09/Avocado.jpeg",
-        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg",
-        "https://frochi.ae/wp-content/uploads/2025/09/Kiwi.jpeg"
+        "https://frochi.ae/wp-content/uploads/2025/09/Granola.jpeg",
+        "https://frochi.ae/wp-content/uploads/2025/09/Banana.jpeg"
       ],
-      nutri: ["6 Billion CFU", "175 kcal", "4.5g"]
+      nutri: ["5 Billion CFU", "210 kcal", "2.5g"]
     }
   ];
 
   // Our Flavours: dedicated lineup/order for this showcase only (independent of the "flavors" data bank above)
   const ourFlavoursList = [
     { id: "acai", name: "Acai", desc: "Packed with antioxidants and a tropical twist", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png" },
-    { id: "chocolate", name: "Chocolate", desc: "Decadent and smooth.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Chocolate-Plain-HR-WB.png" },
     { id: "coconut", name: "Coconut", desc: "Creamy and plant-based for a guilt-free dessert.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/08-Coconut-Plain-Cutout.png" },
-    { id: "salted-caramel", name: "Salted Caramel", desc: "A deliciously decadent twist on the classic caramel favorite.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png" },
-    { id: "taro", name: "Taro", desc: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png" },
     { id: "matcha", name: "Matcha", desc: "A vibrant, earthy blend rich in antioxidants and natural energy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png" },
-    { id: "mango", name: "Mango", desc: "A tropical burst of sunshine", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/02-Mango-Plain-Cutout.png" },
-    { id: "strawberry", name: "Strawberry", desc: "Sweet and vibrant.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/03-Strawberry-Plain-Cutout.png" },
-    { id: "original-yogurt", name: "Original Yogurt", desc: "Classic, tangy, and refreshingly creamy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Original-Plain-Cutout.png" },
-    { id: "blue-bubblegum", name: "Blue Bubblegum", desc: "A whimsical treat loved by all ages.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/04-Blue-Bubble-Gum-Plain-Cutout.png" }
+    { id: "taro", name: "Taro", desc: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png" },
+    { id: "salted-caramel", name: "Salted Caramel", desc: "A deliciously decadent twist on the classic caramel favorite.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png" }
   ];
 
   // Our Flavours: draggable/swipeable cup carousel with momentum-snap (mirrors the React app's behavior)

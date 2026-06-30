@@ -23,15 +23,10 @@ import { generateWordPressCode } from "./WordPressCodeExporter";
 // Dedicated flavor lineup for the "Our Flavours" showcase (its own order/subset, independent of FLAVORS)
 const OUR_FLAVOURS = [
   { id: "acai", name: "Acai", description: "Packed with antioxidants and a tropical twist", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png" },
-  { id: "chocolate", name: "Chocolate", description: "Decadent and smooth.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Chocolate-Plain-HR-WB.png" },
   { id: "coconut", name: "Coconut", description: "Creamy and plant-based for a guilt-free dessert.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/08-Coconut-Plain-Cutout.png" },
-  { id: "salted-caramel", name: "Salted Caramel", description: "A deliciously decadent twist on the classic caramel favorite.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png" },
-  { id: "taro", name: "Taro", description: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png" },
   { id: "matcha", name: "Matcha", description: "A vibrant, earthy blend rich in antioxidants and natural energy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/05-Matcha-Plain-Cutout.png" },
-  { id: "mango", name: "Mango", description: "A tropical burst of sunshine", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/02-Mango-Plain-Cutout.png" },
-  { id: "strawberry", name: "Strawberry", description: "Sweet and vibrant.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/03-Strawberry-Plain-Cutout.png" },
-  { id: "original-yogurt", name: "Original Yogurt", description: "Classic, tangy, and refreshingly creamy.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/09-Original-Plain-Cutout.png" },
-  { id: "blue-bubblegum", name: "Blue Bubblegum", description: "A whimsical treat loved by all ages.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/04-Blue-Bubble-Gum-Plain-Cutout.png" }
+  { id: "taro", name: "Taro", description: "Smooth, creamy vibes with a hint of nuttiness and vanilla-like sweetness.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/06-Taro-Plain-Cutout.png" },
+  { id: "salted-caramel", name: "Salted Caramel", description: "A deliciously decadent twist on the classic caramel favorite.", cupImg: "https://frochi.ae/wp-content/uploads/2025/09/07-Salted-Caramel-Plain-Cutout.png" }
 ];
 
 // Shared stagger-reveal variant for the "Our Story" section
