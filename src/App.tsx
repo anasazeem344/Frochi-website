@@ -559,443 +559,434 @@ export default function App() {
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
           <div
             className="absolute inset-0 w-full h-full"
-            style={{ backgroundImage: "linear-gradient(225deg, rgba(130, 41, 138, 0.85) 0%, transparent 50%), linear-gradient(45deg, rgba(130, 41, 138, 0.85) 0%, transparent 50%)" }}
+            style={{ backgroundImage: "linear-gradient(225deg, rgba(130, 41, 138, 0.85) 0%, transparent 40%), linear-gradient(65deg, rgba(130, 41, 138, 0.85) 0%, transparent 60%)" }}
           />
         </div>
 
         {/* HERO SECTION */}
         <section id="hero-section" className="relative z-20 pb-16 pt-48 px-6 sm:px-10 lg:px-16 w-full bg-transparent min-h-[600px] sm:min-h-[700px] flex items-center">
 
-        {/* Top-Right Stats Counter Overlay mimicking the Coffee Lounge video details */}
-        <div className="absolute top-40 right-10 hidden md:flex items-center gap-6 z-30 font-sans select-none text-white">
-          <div className="text-right">
-            <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">12+</span>
-            <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Flavors</span>
+          {/* Top-Right Stats Counter Overlay mimicking the Coffee Lounge video details */}
+          <div className="absolute top-40 right-10 hidden md:flex items-center gap-6 z-30 font-sans select-none text-white">
+            <div className="text-right">
+              <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">12+</span>
+              <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Flavors</span>
+            </div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="text-right">
+              <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">15K+</span>
+              <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Fans</span>
+            </div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="text-right">
+              <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">100%</span>
+              <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Natural</span>
+            </div>
           </div>
-          <div className="w-px h-6 bg-white/40" />
-          <div className="text-right">
-            <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">15K+</span>
-            <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Fans</span>
-          </div>
-          <div className="w-px h-6 bg-white/40" />
-          <div className="text-right">
-            <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">100%</span>
-            <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Natural</span>
-          </div>
-        </div>
 
-        {/* FULL BLEED MULTI-CUP FLOATING STAGE BACKGROUND/MIDGROUND */}
-        <div className="absolute inset-0 z-10 w-full h-full select-none pointer-events-none">
-          {/* Static reference placeholder for measuring dynamic offset coordinate updates */}
-          <div
-            ref={heroActiveCupRef}
-            className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] opacity-0 pointer-events-none"
-            style={{ left: "54%", top: "23%", transform: "scale(1.125)" }}
-          />
+          {/* FULL BLEED MULTI-CUP FLOATING STAGE BACKGROUND/MIDGROUND */}
+          <div className="absolute inset-0 z-10 w-full h-full select-none pointer-events-none">
+            {/* Static reference placeholder for measuring dynamic offset coordinate updates */}
+            <div
+              ref={heroActiveCupRef}
+              className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] opacity-0 pointer-events-none"
+              style={{ left: "54%", top: "23%", transform: "scale(1.125)" }}
+            />
 
 
-          {/* Orbiting Fruit items positioned relative only around the Active center cup (Cup 2) */}
-          <div
-            className="absolute z-10 w-[clamp(110px,18vw,320px)] aspect-square flex items-center justify-center pointer-events-none"
-            style={{
-              left: "54%",
-              top: "23%",
-              transform: "translate(-5%, -5%) scale(1.125)",
-              opacity: isDesktopLayout ? Math.max(1 - easedCupProgress * 6.66, 0) : 1
-            }}
-          >
-            <AnimatePresence mode="popLayout">
-              {activeFlavor.fruits.map((fr, idx) => {
-                const angle = (idx * 2 * Math.PI) / activeFlavor.fruits.length;
-                const radiusX = typeof window !== "undefined" && window.innerWidth < 640 ? 60 : 110;
-                const radiusY = typeof window !== "undefined" && window.innerWidth < 640 ? 45 : 85;
-                const xOffset = Math.cos(angle) * radiusX;
-                const yOffset = Math.sin(angle) * radiusY;
+            {/* Orbiting Fruit items positioned relative only around the Active center cup (Cup 2) */}
+            <div
+              className="absolute z-10 w-[clamp(110px,18vw,320px)] aspect-square flex items-center justify-center pointer-events-none"
+              style={{
+                left: "54%",
+                top: "23%",
+                transform: "translate(-5%, -5%) scale(1.125)",
+                opacity: isDesktopLayout ? Math.max(1 - easedCupProgress * 6.66, 0) : 1
+              }}
+            >
+              <AnimatePresence mode="popLayout">
+                {activeFlavor.fruits.map((fr, idx) => {
+                  const angle = (idx * 2 * Math.PI) / activeFlavor.fruits.length;
+                  const radiusX = typeof window !== "undefined" && window.innerWidth < 640 ? 60 : 110;
+                  const radiusY = typeof window !== "undefined" && window.innerWidth < 640 ? 45 : 85;
+                  const xOffset = Math.cos(angle) * radiusX;
+                  const yOffset = Math.sin(angle) * radiusY;
 
-                return (
-                  <motion.div
-                    key={`${activeFlavor.id}-orbit-fr-${idx}`}
-                    initial={{ opacity: 0, scale: 0.2, x: 0, y: 0 }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1,
-                      x: [xOffset, xOffset + Math.sin(idx) * 12, xOffset],
-                      y: [yOffset, yOffset + Math.cos(idx) * 12, yOffset],
-                      rotate: [0, idx % 2 === 0 ? 360 : -360]
-                    }}
-                    exit={{ opacity: 0, scale: 0.2 }}
-                    transition={{
-                      opacity: { duration: 0.4 },
-                      scale: { duration: 0.4 },
-                      x: { duration: 4 + idx, repeat: Infinity, ease: "easeInOut" },
-                      y: { duration: 4 + idx, repeat: Infinity, ease: "easeInOut" },
-                      rotate: { duration: 16 + idx * 4, repeat: Infinity, ease: "linear" }
-                    }}
-                    className="absolute w-8 h-8 sm:w-14 sm:h-14 rounded-full shadow-md overflow-hidden bg-white border border-gray-100 z-30 flex items-center justify-center cursor-pointer pointer-events-auto hover:scale-110 transition-transform"
-                  >
-                    <img
-                      src={fr.img}
-                      alt={fr.name}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-          {/* CUPS + SHADOWS — single loop, outer wrapper handles position/rotate, inner handles scale only */}
-          {FLAVORS.map((flavor, index) => {
-            const diff = getRelativeDiff(index, activeIdx);
-            const slotProps = getSlotProps(diff);
-            const isCenterActive = diff === 0;
-            const prevDiff = getRelativeDiff(index, prevActiveIdx);
-            const prevSlotProps = getSlotProps(prevDiff);
-            const prevLeftVal = parseFloat(prevSlotProps.left);
-            const currentLeftVal = parseFloat(slotProps.left);
-            const isWrapping = Math.abs(currentLeftVal - prevLeftVal) > 50;
+                  return (
+                    <motion.div
+                      key={`${activeFlavor.id}-orbit-fr-${idx}`}
+                      initial={{ opacity: 0, scale: 0.2, x: 0, y: 0 }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                        x: [xOffset, xOffset + Math.sin(idx) * 12, xOffset],
+                        y: [yOffset, yOffset + Math.cos(idx) * 12, yOffset],
+                        rotate: [0, idx % 2 === 0 ? 360 : -360]
+                      }}
+                      exit={{ opacity: 0, scale: 0.2 }}
+                      transition={{
+                        opacity: { duration: 0.4 },
+                        scale: { duration: 0.4 },
+                        x: { duration: 4 + idx, repeat: Infinity, ease: "easeInOut" },
+                        y: { duration: 4 + idx, repeat: Infinity, ease: "easeInOut" },
+                        rotate: { duration: 16 + idx * 4, repeat: Infinity, ease: "linear" }
+                      }}
+                      className="absolute w-8 h-8 sm:w-14 sm:h-14 rounded-full shadow-md overflow-hidden bg-white border border-gray-100 z-30 flex items-center justify-center cursor-pointer pointer-events-auto hover:scale-110 transition-transform"
+                    >
+                      <img
+                        src={fr.img}
+                        alt={fr.name}
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+            {/* CUPS + SHADOWS — single loop, outer wrapper handles position/rotate, inner handles scale only */}
+            {FLAVORS.map((flavor, index) => {
+              const diff = getRelativeDiff(index, activeIdx);
+              const slotProps = getSlotProps(diff);
+              const isCenterActive = diff === 0;
+              const prevDiff = getRelativeDiff(index, prevActiveIdx);
+              const prevSlotProps = getSlotProps(prevDiff);
+              const prevLeftVal = parseFloat(prevSlotProps.left);
+              const currentLeftVal = parseFloat(slotProps.left);
+              const isWrapping = Math.abs(currentLeftVal - prevLeftVal) > 50;
 
-            return (
-              <motion.div
-                key={flavor.id}
-                animate={{
-                  left: slotProps.left,
-                  top: slotProps.top,
-                  rotate: slotProps.rotate,
-                  opacity: slotProps.opacity,
-                  zIndex: slotProps.zIndex,
-                }}
-                transition={{
-                  left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                  top: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                  rotate: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
-                  opacity: { duration: 0.35, ease: "easeInOut" },
-                }}
-                className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
-                style={{
-                  pointerEvents: slotProps.pointerEvents,
-                  x: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.x : 0,
-                  y: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.y : 0,
-                  zIndex: isCenterActive ? 50 : slotProps.zIndex
-                }}
-              >
-                {/* Inner: scale + drag + float — shadow is NOT inside here */}
+              return (
                 <motion.div
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = Math.abs(offset.x) * velocity.x;
-                    if (swipe < -10000 || offset.x < -50) {
-                      setActiveIndex((prev) => (prev + 1) % FLAVORS.length);
-                    } else if (swipe > 10000 || offset.x > 50) {
-                      setActiveIndex((prev) => (prev - 1 + FLAVORS.length) % FLAVORS.length);
-                    }
+                  key={flavor.id}
+                  animate={{
+                    left: slotProps.left,
+                    top: slotProps.top,
+                    rotate: slotProps.rotate,
+                    opacity: slotProps.opacity,
+                    zIndex: slotProps.zIndex,
                   }}
-                  animate={{ scale: slotProps.scale }}
                   transition={{
-                    scale: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    top: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    rotate: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
+                    opacity: { duration: 0.35, ease: "easeInOut" },
                   }}
-                  whileHover={isCenterActive ? { scale: 1.05, rotate: 0 } : { scale: 1.05 }}
-                  onClick={() => setActiveIndex(index)}
-                  className="relative w-full h-full flex flex-col items-center cursor-pointer filter pointer-events-auto"
+                  className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
+                  style={{
+                    pointerEvents: slotProps.pointerEvents,
+                    x: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.x : 0,
+                    y: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.y : 0,
+                    zIndex: isCenterActive ? 50 : slotProps.zIndex
+                  }}
                 >
+                  {/* Inner: scale + drag + float — shadow is NOT inside here */}
                   <motion.div
-                    animate={{
-                      y: isCenterActive ? [0, 8, 0] : (diff === -1 ? [0, -8, 0] : (diff === 1 ? [0, -10, 0] : [0, 6, 0]))
-                    }}
-                    transition={{
-                      y: {
-                        duration: isCenterActive ? 3.5 : (diff === -1 ? 4.0 : (diff === 1 ? 4.5 : 5.0)),
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.1
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) * velocity.x;
+                      if (swipe < -10000 || offset.x < -50) {
+                        setActiveIndex((prev) => (prev + 1) % FLAVORS.length);
+                      } else if (swipe > 10000 || offset.x > 50) {
+                        setActiveIndex((prev) => (prev - 1 + FLAVORS.length) % FLAVORS.length);
                       }
                     }}
-                    className="relative w-full h-full flex flex-col items-center"
+                    animate={{ scale: slotProps.scale }}
+                    transition={{
+                      scale: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    }}
+                    whileHover={isCenterActive ? { scale: 1.05, rotate: 0 } : { scale: 1.05 }}
+                    onClick={() => setActiveIndex(index)}
+                    className="relative w-full h-full flex flex-col items-center cursor-pointer filter pointer-events-auto"
                   >
-                    <img
-                      src={flavor.cupImg}
-                      alt={flavor.name}
-                      className="w-full h-auto object-contain selection:bg-transparent cursor-pointer z-10 relative"
-                      style={{
-                        filter: isCenterActive
-                          ? "drop-shadow(0 25px 35px #82298a60)"
-                          : "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08))"
+                    <motion.div
+                      animate={{
+                        y: isCenterActive ? [0, 8, 0] : (diff === -1 ? [0, -8, 0] : (diff === 1 ? [0, -10, 0] : [0, 6, 0]))
                       }}
-                      referrerPolicy="no-referrer"
-                      draggable={false}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveIndex(index);
+                      transition={{
+                        y: {
+                          duration: isCenterActive ? 3.5 : (diff === -1 ? 4.0 : (diff === 1 ? 4.5 : 5.0)),
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.1
+                        }
                       }}
-                    />
-
-
-
-                    {/* Tooltip name label */}
-                    {!isCenterActive && (
-                      <span
-                        className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm border border-gray-100 shadow-sm text-[9px] font-mono px-2 py-0.5 rounded-full text-gray-500 font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-30 cursor-pointer"
+                      className="relative w-full h-full flex flex-col items-center"
+                    >
+                      <img
+                        src={flavor.cupImg}
+                        alt={flavor.name}
+                        className="w-full h-auto object-contain selection:bg-transparent cursor-pointer z-10 relative"
+                        style={{
+                          filter: isCenterActive
+                            ? "drop-shadow(0 25px 35px #82298a60)"
+                            : "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08))"
+                        }}
+                        referrerPolicy="no-referrer"
+                        draggable={false}
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveIndex(index);
                         }}
-                      >
-                        {flavor.name}
-                      </span>
-                    )}
+                      />
+
+
+
+                      {/* Tooltip name label */}
+                      {!isCenterActive && (
+                        <span
+                          className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm border border-gray-100 shadow-sm text-[9px] font-mono px-2 py-0.5 rounded-full text-gray-500 font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-30 cursor-pointer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveIndex(index);
+                          }}
+                        >
+                          {flavor.name}
+                        </span>
+                      )}
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* TYPOGRAPHY OVERLAY COLUMN WRAPPER */}
-        <div className="relative w-full z-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end pt-32 min-h-[500px] sm:min-h-[550px] md:min-h-[600px] pointer-events-none">
-
-          {/* HERO CONTENT: LEFT COLUMN - CLEANLY ALIGNED BOTTOM-LEFT UNDER THE SHIFTED CUPS */}
-          <div className="lg:col-span-6 flex flex-col justify-end pointer-events-auto bg-white/80 backdrop-blur-md sm:backdrop-blur-none sm:bg-transparent p-6 sm:p-0 rounded-3xl border border-white/10 sm:border-none shadow-sm sm:shadow-none">
-            <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2 mb-3 font-mono drop-shadow-md">
-              <Sparkles size={14} className="animate-pulse" />
-              <span>Premium Swirl of Dubai</span>
-            </span>
-
-            {/* Static Title */}
-            <div>
-              <h1 className="text-4xl sm:text-6xl font-display font-black leading-[1.05] tracking-tight relative mb-2">
-                <span className="uppercase font-extrabold text-[#82298a] block sm:inline drop-shadow-sm">IT'S FROCHI TIME.</span>
-              </h1>
-            </div>
-
-            {/* Smooth transition for dynamic content */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFlavor.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="space-y-4"
-              >
-                <div>
-                  <p className="text-2xl sm:text-4xl font-display font-bold text-white tracking-tight mt-1 select-none drop-shadow-md">
-                    {activeFlavor.name.toLowerCase()} lounge
-                  </p>
-                </div>
-                <p className="text-white leading-relaxed text-xs sm:text-sm font-sans max-w-md bg-[#82298a]/40 sm:bg-transparent p-3 sm:p-0 rounded-2xl drop-shadow-md">
-                  {activeFlavor.description}
-                </p>
-
-                {/* Micro Nutrients Line */}
-                <div className="flex items-center gap-4 py-2">
-                  <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#82298a]" />
-                    <span>{activeFlavor.nutritionalInfo.probiotics}</span>
-                  </div>
-                  <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
-                    <Clock size={12} className="text-[#82298a]/70" />
-                    <span>{activeFlavor.nutritionalInfo.calories} kcal</span>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* RIGHT COLUMN: DUMMY COLUMN OFFERID ALIGNMENT SO BACKGROUND STRETCHES OUT FREELY */}
-          <div className="lg:col-span-6 h-[120px] lg:h-full pointer-events-none select-none" />
-
-        </div>
-      </section>
-
-      {/* GALLERY SECTION (SHARE THE CHI) */}
-      <section
-        ref={galleryRef}
-        id="gallery"
-        className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-transparent relative z-10 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
-      >
-        <div className="relative w-full max-w-[1250px] mx-auto flex flex-col items-center min-h-[900px] md:h-[1350px] md:justify-start">
-
-          {/* Logo & Header Title */}
-          <motion.div
-            style={isDesktopLayout ? {
-              y: headerY,
-              x: 0,
-              scale: headerScale,
-            } : {}}
-            className="flex flex-col items-center text-center max-w-2xl mx-auto mb-2 z-20 origin-center"
-          >
-            <img
-              src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png"
-              alt="Frochi Logo Icon"
-              className="h-14 sm:h-16 w-auto object-contain mb-4"
-              referrerPolicy="no-referrer"
-            />
-            <h2 className="text-4xl sm:text-5xl font-display font-extrabold text-[#82298a] tracking-tight leading-none uppercase">
-              Share the Chi!
-            </h2>
-
-          </motion.div>
-
-          {/* Central Landing Target & Text Column */}
-          <div className={
-            isDesktopLayout
-              ? "absolute top-[480px] left-1/2 -translate-x-1/2 flex flex-col items-center text-center max-w-md z-30 pointer-events-none"
-              : "flex flex-col items-center text-center max-w-md mx-auto my-4 z-30 pointer-events-none relative"
-          }>
-            {/* The invisible target anchor that the cup lands on */}
-            <div
-              ref={targetRef}
-              id="cup-landing-target"
-              className="w-[140px] sm:w-[240px] md:w-[280px] lg:w-[320px] aspect-square flex items-center justify-center my-6 relative"
-            >
-              {/* The moving cup image only on mobile layout (on desktop the real cup moves down) */}
-              {!isDesktopLayout && (
-                <img
-                  src={activeFlavor.cupImg}
-                  alt={activeFlavor.name}
-                  className="w-full h-full object-contain"
-                  style={{
-                    filter: "drop-shadow(0 20px 30px #82298a60)"
-                  }}
-                />
-              )}
-            </div>
-
-            {/* Bottom Subtext: moves down with scroll like the header, always visible, stays below the cup */}
-            <motion.div
-              className="px-4"
-              style={isDesktopLayout ? { y: subtextY } : {}}
-            >
-              <p className="text-[#82298a] font-semibold text-sm sm:text-base leading-snug">
-                Chi is an energy.
-              </p>
-              <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mt-2 max-w-xs mx-auto">
-                It's a natural force that flows from one heart to another in the blink of an eye.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Floating Fan-arranged Cards */}
-          <div className={
-            isDesktopLayout
-              ? "absolute top-[260px] left-0 right-0 h-[1100px] z-10 block"
-              : "w-full grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 z-10"
-          }>
-            {GALLERY_ITEMS.map((card, idx) => {
-              const getMobileCardStyle = (index: number) => {
-                switch (index) {
-                  case 0: return "rotate-[-2deg]";
-                  case 1: return "rotate-[2deg]";
-                  case 2: return "rotate-[-1deg]";
-                  case 3: return "rotate-[1deg]";
-                  case 4: return "rotate-[-2deg]";
-                  case 5: return "rotate-[2deg]";
-                  default: return "";
-                }
-              };
-
-              // Interpolates absolute positions and rotations of the cards based on scrollProgress
-              const getInterpolatedStyles = (i: number, p: number) => {
-                const width = 44;
-                let targetRotate = 0;
-                if (i % 2 === 0) {
-                  if (i === 0) targetRotate = -6;
-                  else if (i === 2) targetRotate = -10;
-                  else if (i === 4) targetRotate = -5;
-                } else {
-                  if (i === 1) targetRotate = 6;
-                  else if (i === 3) targetRotate = 10;
-                  else if (i === 5) targetRotate = 5;
-                }
-                const rotate = p * targetRotate;
-
-                let left = 0;
-                if (i % 2 === 0) {
-                  left = 0 + p * -15;
-                } else {
-                  left = 56 + p * 15;
-                }
-
-                let top = 0;
-                if (i === 0 || i === 1) {
-                  top = 0;
-                } else if (i === 2 || i === 3) {
-                  top = 35;
-                } else if (i === 4 || i === 5) {
-                  top = 70;
-                }
-
-                let zIndex = 10;
-                if (i === 0 || i === 1) {
-                  zIndex = 30;
-                } else if (i === 2 || i === 3) {
-                  zIndex = 20;
-                }
-
-                return {
-                  top: `${top}%`,
-                  left: `${left}%`,
-                  width: `${width}%`,
-                  rotate: `${rotate}deg`,
-                  zIndex,
-                };
-              };
-
-              const dynamicStyle = isDesktopLayout
-                ? getInterpolatedStyles(idx, easedProgress)
-                : { zIndex: (idx === 0 || idx === 1) ? 30 : (idx === 2 || idx === 3) ? 20 : 10 };
-
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
-                  className={
-                    isDesktopLayout
-                      ? "absolute aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-shadow border border-gray-100 bg-white"
-                      : `${getMobileCardStyle(idx)} relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-all border border-gray-100 bg-white`
-                  }
-                  style={dynamicStyle}
-                >
-                  <img
-                    src={card.img}
-                    alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  {/* Bottom purple gradient text overlay */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#5a1c61]/95 via-[#5a1c61]/45 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
-                    <h3 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight">
-                      {card.title}
-                    </h3>
-                    <p className="text-xs opacity-90 mt-1 font-sans font-medium">
-                      {card.subtitle}
-                    </p>
-                  </div>
                 </motion.div>
               );
             })}
           </div>
 
-        </div>
-      </section>
+          {/* TYPOGRAPHY OVERLAY COLUMN WRAPPER */}
+          <div className="relative w-full z-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end pt-32 min-h-[500px] sm:min-h-[550px] md:min-h-[600px] pointer-events-none">
 
-      {/* CLOSE SEAMLESS HERO + GALLERY WRAPPER */}
+            {/* HERO CONTENT: LEFT COLUMN - CLEANLY ALIGNED BOTTOM-LEFT UNDER THE SHIFTED CUPS */}
+            <div className="lg:col-span-6 flex flex-col justify-end pointer-events-auto bg-white/80 backdrop-blur-md sm:backdrop-blur-none sm:bg-transparent p-6 sm:p-0 rounded-3xl border border-white/10 sm:border-none shadow-sm sm:shadow-none">
+              <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2 mb-3 font-mono drop-shadow-md">
+                <Sparkles size={14} className="animate-pulse" />
+                <span>Premium Swirl of Dubai</span>
+              </span>
+
+              {/* Static Title */}
+              <div>
+                <h1 className="text-4xl sm:text-6xl font-display font-black leading-[1.05] tracking-tight relative mb-2">
+                  <span className="uppercase font-extrabold text-[#82298a] block sm:inline drop-shadow-sm">IT'S FROCHI TIME.</span>
+                </h1>
+              </div>
+
+              {/* Smooth transition for dynamic content */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFlavor.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="space-y-4"
+                >
+                  <div>
+                    <p className="text-2xl sm:text-4xl font-display font-bold text-white tracking-tight mt-1 select-none drop-shadow-md">
+                      {activeFlavor.name.toLowerCase()} lounge
+                    </p>
+                  </div>
+                  <p className="text-white leading-relaxed text-xs sm:text-sm font-sans max-w-md bg-[#82298a]/40 sm:bg-transparent p-3 sm:p-0 rounded-2xl drop-shadow-md">
+                    {activeFlavor.description}
+                  </p>
+
+                  {/* Micro Nutrients Line */}
+                  <div className="flex items-center gap-4 py-2">
+                    <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#82298a]" />
+                      <span>{activeFlavor.nutritionalInfo.probiotics}</span>
+                    </div>
+                    <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
+                      <Clock size={12} className="text-[#82298a]/70" />
+                      <span>{activeFlavor.nutritionalInfo.calories} kcal</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* RIGHT COLUMN: DUMMY COLUMN OFFERID ALIGNMENT SO BACKGROUND STRETCHES OUT FREELY */}
+            <div className="lg:col-span-6 h-[120px] lg:h-full pointer-events-none select-none" />
+
+          </div>
+        </section>
+
+        {/* GALLERY SECTION (SHARE THE CHI) */}
+        <section
+          ref={galleryRef}
+          id="gallery"
+          className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-transparent relative z-10 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
+        >
+          <div className="relative w-full max-w-[1250px] mx-auto flex flex-col items-center min-h-[900px] md:h-[1350px] md:justify-start">
+
+            {/* Logo & Header Title */}
+            <motion.div
+              style={isDesktopLayout ? {
+                y: headerY,
+                x: 0,
+                scale: headerScale,
+              } : {}}
+              className="flex flex-col items-center text-center max-w-2xl mx-auto mb-2 z-20 origin-center"
+            >
+              <img
+                src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png"
+                alt="Frochi Logo Icon"
+                className="h-14 sm:h-16 w-auto object-contain mb-4"
+                referrerPolicy="no-referrer"
+              />
+              <h2 className="text-4xl sm:text-5xl font-display font-extrabold text-[#82298a] tracking-tight leading-none uppercase">
+                Share the Chi!
+              </h2>
+
+            </motion.div>
+
+            {/* Central Landing Target & Text Column */}
+            <div className={
+              isDesktopLayout
+                ? "absolute top-[480px] left-1/2 -translate-x-1/2 flex flex-col items-center text-center max-w-md z-30 pointer-events-none"
+                : "flex flex-col items-center text-center max-w-md mx-auto my-4 z-30 pointer-events-none relative"
+            }>
+              {/* The invisible target anchor that the cup lands on */}
+              <div
+                ref={targetRef}
+                id="cup-landing-target"
+                className="w-[140px] sm:w-[240px] md:w-[280px] lg:w-[320px] aspect-square flex items-center justify-center my-6 relative"
+              >
+                {/* The moving cup image only on mobile layout (on desktop the real cup moves down) */}
+                {!isDesktopLayout && (
+                  <img
+                    src={activeFlavor.cupImg}
+                    alt={activeFlavor.name}
+                    className="w-full h-full object-contain"
+                    style={{
+                      filter: "drop-shadow(0 20px 30px #82298a60)"
+                    }}
+                  />
+                )}
+              </div>
+
+              {/* Bottom Subtext: moves down with scroll like the header, always visible, stays below the cup */}
+              <motion.div
+                className="px-4"
+                style={isDesktopLayout ? { y: subtextY } : {}}
+              >
+                <p className="text-[#82298a] font-semibold text-sm sm:text-base leading-snug">
+                  Chi is an energy.
+                </p>
+                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mt-2 max-w-xs mx-auto">
+                  It's a natural force that flows from one heart to another in the blink of an eye.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Floating Fan-arranged Cards */}
+            <div className={
+              isDesktopLayout
+                ? "absolute top-[260px] left-0 right-0 h-[1100px] z-10 block"
+                : "w-full grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 z-10"
+            }>
+              {GALLERY_ITEMS.map((card, idx) => {
+                const getMobileCardStyle = (index: number) => {
+                  switch (index) {
+                    case 0: return "rotate-[-2deg]";
+                    case 1: return "rotate-[2deg]";
+                    case 2: return "rotate-[-1deg]";
+                    case 3: return "rotate-[1deg]";
+                    case 4: return "rotate-[-2deg]";
+                    case 5: return "rotate-[2deg]";
+                    default: return "";
+                  }
+                };
+
+                // Interpolates absolute positions and rotations of the cards based on scrollProgress
+                const getInterpolatedStyles = (i: number, p: number) => {
+                  const width = 44;
+                  let targetRotate = 0;
+                  if (i % 2 === 0) {
+                    if (i === 0) targetRotate = -6;
+                    else if (i === 2) targetRotate = -10;
+                    else if (i === 4) targetRotate = -5;
+                  } else {
+                    if (i === 1) targetRotate = 6;
+                    else if (i === 3) targetRotate = 10;
+                    else if (i === 5) targetRotate = 5;
+                  }
+                  const rotate = p * targetRotate;
+
+                  let left = 0;
+                  if (i % 2 === 0) {
+                    left = 0 + p * -15;
+                  } else {
+                    left = 56 + p * 15;
+                  }
+
+                  let top = 0;
+                  if (i === 0 || i === 1) {
+                    top = 0;
+                  } else if (i === 2 || i === 3) {
+                    top = 35;
+                  } else if (i === 4 || i === 5) {
+                    top = 70;
+                  }
+
+                  let zIndex = 10;
+                  if (i === 0 || i === 1) {
+                    zIndex = 30;
+                  } else if (i === 2 || i === 3) {
+                    zIndex = 20;
+                  }
+
+                  return {
+                    top: `${top}%`,
+                    left: `${left}%`,
+                    width: `${width}%`,
+                    rotate: `${rotate}deg`,
+                    zIndex,
+                  };
+                };
+
+                const dynamicStyle = isDesktopLayout
+                  ? getInterpolatedStyles(idx, easedProgress)
+                  : { zIndex: (idx === 0 || idx === 1) ? 30 : (idx === 2 || idx === 3) ? 20 : 10 };
+
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: idx * 0.08 }}
+                    className={
+                      isDesktopLayout
+                        ? "absolute aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-shadow border border-gray-100 bg-white"
+                        : `${getMobileCardStyle(idx)} relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-all border border-gray-100 bg-white`
+                    }
+                    style={dynamicStyle}
+                  >
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                    />
+                    {/* Bottom purple gradient text overlay */}
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#5a1c61]/95 via-[#5a1c61]/45 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
+                      <h3 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight">
+                        {card.title}
+                      </h3>
+                      <p className="text-xs opacity-90 mt-1 font-sans font-medium">
+                        {card.subtitle}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+          </div>
+        </section>
+
+        {/* CLOSE SEAMLESS HERO + GALLERY WRAPPER */}
       </div>
 
-      {/* FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint */}
-      <section id="flow-section" className="relative w-full leading-[0]">
-        <img
-          src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png"
-          alt="Flow"
-          className="block w-full h-auto"
-          referrerPolicy="no-referrer"
-        />
-      </section>
 
       {/* BRAND STORY & INTEGRITY SEGMENT */}
       <section id="brand-story" className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto z-10 border-t-2 border-[#efece2]">
@@ -1161,8 +1152,8 @@ export default function App() {
               width: (OUR_FLAVOURS.length - 1) * ourFlavoursGap + ourFlavoursStageWidth,
               x: ourFlavoursX,
               zIndex: 10 // sits between the white circle (z-5) and the flavor text (z-60); this wrapper has its own
-                         // stacking context (CSS transform creates one), so individual cups' z-index only orders them
-                         // relative to EACH OTHER — the group as a whole still needs to rank above the circle here.
+              // stacking context (CSS transform creates one), so individual cups' z-index only orders them
+              // relative to EACH OTHER — the group as a whole still needs to rank above the circle here.
             }}
             drag="x"
             dragElastic={0.1}
@@ -1270,6 +1261,16 @@ export default function App() {
             <p className="text-[10px] text-white/70 text-center font-mono">3 / 5 Swirls Captured. Almost Free!</p>
           </div>
         </div>
+      </section>
+
+      {/* FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint */}
+      <section id="flow-section" className="relative w-full leading-[0]">
+        <img
+          src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png"
+          alt="Flow"
+          className="block w-full h-auto"
+          referrerPolicy="no-referrer"
+        />
       </section>
 
       {/* FOOTER SECTION */}

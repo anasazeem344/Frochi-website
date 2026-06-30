@@ -5,11 +5,6 @@ export function generateWordPressCode(): { html: string; css: string; js: string
   <!-- Left Floating Wave Elements -->
   <div class="frochi-decor-wave"></div>
 
-  <!-- FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint -->
-  <section class="frochi-flow-section" id="flow-section">
-    <img src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png" alt="Flow" referrerpolicy="no-referrer" />
-  </section>
-
   <!-- SEAMLESS HERO + GALLERY WRAPPER -->
   <div class="frochi-hero-gallery-wrapper">
     
@@ -208,6 +203,11 @@ export function generateWordPressCode(): { html: string; css: string; js: string
         <p id="our-flavours-desc"></p>
       </div>
     </div>
+  </section>
+
+  <!-- FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint -->
+  <section class="frochi-flow-section" id="flow-section">
+    <img src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png" alt="Flow" referrerpolicy="no-referrer" />
   </section>
 
 </div>`;
