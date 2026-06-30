@@ -553,17 +553,18 @@ export default function App() {
         </div>
       </div>
 
-      {/* HERO SECTION */}
-      <section id="hero-section" className="relative z-20 pb-16 pt-48 px-6 sm:px-10 lg:px-16 w-full bg-white border-b border-gray-100 min-h-[600px] sm:min-h-[700px] flex items-center">
-
-        {/* Diagonal brand-purple radial-linear light effect below cups */}
+      {/* SEAMLESS HERO + GALLERY WRAPPER */}
+      <div className="relative w-full overflow-hidden bg-white border-b border-gray-100">
+        {/* Seamless Combined Background Gradient */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-          {/* Gradients that are dark at the corners and fade to white in the center */}
           <div
             className="absolute inset-0 w-full h-full"
             style={{ backgroundImage: "linear-gradient(225deg, rgba(130, 41, 138, 0.85) 0%, transparent 50%), linear-gradient(45deg, rgba(130, 41, 138, 0.85) 0%, transparent 50%)" }}
           />
         </div>
+
+        {/* HERO SECTION */}
+        <section id="hero-section" className="relative z-20 pb-16 pt-48 px-6 sm:px-10 lg:px-16 w-full bg-transparent min-h-[600px] sm:min-h-[700px] flex items-center">
 
         {/* Top-Right Stats Counter Overlay mimicking the Coffee Lounge video details */}
         <div className="absolute top-40 right-10 hidden md:flex items-center gap-6 z-30 font-sans select-none text-white">
@@ -812,7 +813,7 @@ export default function App() {
       <section
         ref={galleryRef}
         id="gallery"
-        className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-white relative z-10 border-b border-gray-100 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
+        className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-transparent relative z-10 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
       >
         <div className="relative w-full max-w-[1250px] mx-auto flex flex-col items-center min-h-[900px] md:h-[1350px] md:justify-start">
 
@@ -982,6 +983,9 @@ export default function App() {
 
         </div>
       </section>
+
+      {/* CLOSE SEAMLESS HERO + GALLERY WRAPPER */}
+      </div>
 
       {/* FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint */}
       <section id="flow-section" className="relative w-full leading-[0]">

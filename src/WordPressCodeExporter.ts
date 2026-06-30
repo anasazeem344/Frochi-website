@@ -10,6 +10,133 @@ export function generateWordPressCode(): { html: string; css: string; js: string
     <img src="https://frochi.ae/wp-content/uploads/2026/06/flow-section.png" alt="Flow" referrerpolicy="no-referrer" />
   </section>
 
+  <!-- SEAMLESS HERO + GALLERY WRAPPER -->
+  <div class="frochi-hero-gallery-wrapper">
+    
+    <!-- MAIN HERO SECTION -->
+    <main class="frochi-hero" id="frochi-hero">
+      <div class="frochi-hero-grid">
+        
+        <!-- HERO TEXT -->
+        <div class="frochi-hero-content">
+          <h1 id="frochi-active-title" class="frochi-display-title">Acai</h1>
+          <p id="frochi-active-subtitle" class="frochi-subtitle">Antioxidant Rich | Tropical Twist | Pure Berries</p>
+          <p id="frochi-active-desc" class="frochi-desc">
+            Packed with antioxidants and a tropical twist
+          </p>
+          
+          <div class="frochi-nutrients">
+            <div class="nutrient-badge">
+              <span class="badge-lbl">Probiotics</span>
+              <span id="nutri-probiotics" class="badge-val">5 Billion CFU</span>
+            </div>
+            <div class="nutrient-badge">
+              <span class="badge-lbl">Calories</span>
+              <span id="nutri-calories" class="badge-val">190 kcal</span>
+            </div>
+            <div class="nutrient-badge">
+              <span class="badge-lbl">Fiber</span>
+              <span id="nutri-fiber" class="badge-val">5.6g</span>
+            </div>
+          </div>
+
+          <div class="frochi-hero-ctas">
+            <button id="frochi-next-flavor-btn" class="frochi-btn-secondary">Next Taste</button>
+          </div>
+        </div>
+
+        <!-- 3D FLOATING CUP DISPLAY -->
+        <div class="frochi-cup-stage">
+          
+          <!-- Flying Fruit Items (Decorations) -->
+          <div class="frochi-fruit fruit-1" id="fr-item-1"></div>
+          <div class="frochi-fruit fruit-2" id="fr-item-2"></div>
+          <div class="frochi-fruit fruit-3" id="fr-item-3"></div>
+
+          <!-- Central Cup Wrapper -->
+          <div class="frochi-cup-wrap" id="frochi-cup-wrap">
+            <img id="frochi-active-cup" src="https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png" alt="Frochi Cup" class="frochi-main-cup" style="z-index: 10; position: relative;" />
+            <div class="frochi-cup-shadow"></div>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+
+    <!-- GALLERY SECTION (SHARE THE CHI) -->
+    <section class="frochi-gallery" id="gallery">
+      <div class="gallery-header">
+        <img src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png" alt="Frochi Logo" class="h-8 w-auto object-contain mb-4" />
+        <h2 class="section-title">Share the Chi!</h2>
+      </div>
+
+      <div class="gallery-grid-wrapper">
+        <div class="gallery-grid">
+          <div class="frochi-gallery-card" data-idx="0">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/5-1.png" alt="Smoothies" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Smoothies</h3>
+              <p class="gallery-card-subtitle">Freshly blended ingredients</p>
+            </div>
+          </div>
+          <div class="frochi-gallery-card" data-idx="1">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/8-1.png" alt="Yogurts" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Yogurts</h3>
+              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+            </div>
+          </div>
+          <div class="frochi-gallery-card" data-idx="2">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/1-1.png" alt="Yogurts" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Yogurts</h3>
+              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+            </div>
+          </div>
+          <div class="frochi-gallery-card" data-idx="3">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/6-1.png" alt="Yogurts" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Yogurts</h3>
+              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+            </div>
+          </div>
+          <div class="frochi-gallery-card" data-idx="4">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/7-1.png" alt="Yogurts" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Yogurts</h3>
+              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+            </div>
+          </div>
+          <div class="frochi-gallery-card" data-idx="5">
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/2-1.png" alt="Yogurts" class="gallery-img" />
+            <div class="gallery-card-overlay"></div>
+            <div class="gallery-card-content">
+              <h3 class="gallery-card-title">Yogurts</h3>
+              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Landing Target & Text Column -->
+        <div class="gallery-landing-cup-container" id="gallery-landing-cup">
+          <div class="gallery-cup-target" id="gallery-cup-target">
+            <img id="gallery-cup-img" src="https://frochi.ae/wp-content/uploads/2025/09/01-Acai-Plain-Cutout.png" alt="Landed Cup" class="gallery-landed-cup" />
+          </div>
+          <div class="gallery-landing-subtext" id="gallery-landing-subtext">
+            <p class="gallery-subtext-bold">Chi is an energy.</p>
+            <p class="gallery-subtext-regular">It's a natural force that flows from one heart to another in the blink of an eye.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
   <!-- BRAND STORY SECTION -->
   <section class="frochi-story" id="frochi-story">
 
@@ -85,7 +212,25 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 
 </div>`;
 
-  const css = `body {
+  const css = `
+.frochi-hero-gallery-wrapper {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8f0 100%);
+  border-bottom: 2px solid #f3eedd;
+  overflow: hidden;
+}
+
+.frochi-hero-gallery-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(225deg, rgba(130, 41, 138, 0.15) 0%, transparent 40%), linear-gradient(45deg, rgba(130, 41, 138, 0.12) 0%, transparent 40%);
+}
+body {
       margin: 0;
       padding: 0;
       background-color: #f5f5f5;
@@ -180,8 +325,9 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 /* Hero Section */
 .frochi-hero {
   padding: 60px 40px;
-  background: linear-gradient(180deg, #ffffff 0%, #faf8f0 100%);
+  background: transparent;
   position: relative;
+  z-index: 1;
 }
 
 .frochi-hero-grid {
@@ -876,8 +1022,8 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 /* Gallery Section */
 .frochi-gallery {
   padding: 96px 40px;
-  background-color: white;
-  border-bottom: 1px solid #f3f4f6;
+  background-color: transparent;
+  border-bottom: none;
   position: relative;
   z-index: 10;
   max-width: 1440px;
@@ -1506,299 +1652,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nutriFib.innerText = f.nutri[2];
       
       // Update floating fruits
-      document.getElementById("fr-item-1").style.backgroundImage = \`url('\${f.fruits[0]}')\`;
-      document.getElementById("fr-item-2").style.backgroundImage = \`url('\${f.fruits[1]}')\`;
-      document.getElementById("fr-item-3").style.backgroundImage = \`url('\${f.fruits[2]}')\`;
-
-      // Animate back in
-      cupWrap.style.transform = "scale(1.1) rotate(5deg)";
-      cupWrap.style.opacity = "1";
-      setTimeout(() => {
-        cupWrap.style.transform = "";
-      }, 300);
-    }, 300);
-  }
-
-  nextBtn.addEventListener("click", () => {
-    activeIndex = (activeIndex + 1) % flavors.length;
-    updateFlavor(activeIndex);
-  });
-
-  // Load interactive customizer bases
-  // Parallax scroll handler
-  let transitionOffsets = { x: 0, y: 0 };
-  let isDesktop = window.innerWidth >= 768;
-
-
-  function calculateOffsets() {
-    isDesktop = window.innerWidth >= 768;
-    const heroCup = document.getElementById("frochi-cup-wrap-placeholder");
-    const targetAnchor = document.getElementById("gallery-cup-target");
-    if (heroCup && targetAnchor) {
-      const heroRect = heroCup.getBoundingClientRect();
-      const targetRect = targetAnchor.getBoundingClientRect();
-      
-      // Calculate document-relative coordinates
-      const heroTop = heroRect.top + window.scrollY;
-      const heroLeft = heroRect.left + window.scrollX;
-      
-      const targetTop = targetRect.top + window.scrollY;
-      const targetLeft = targetRect.left + window.scrollX;
-      
-      // Align centers
-      const xDiff = (targetLeft + targetRect.width / 2) - (heroLeft + heroRect.width / 2);
-      const yDiff = (targetTop + targetRect.height / 2) - (heroTop + heroRect.height / 2);
-      
-      transitionOffsets = { x: xDiff, y: yDiff };
-
-      // Apply offset transform immediately if not animating (to prevent jump on resize)
-      if (!isAnimating) {
-        const realCup = document.getElementById("frochi-cup-wrap");
-        if (realCup && isDesktop) {
-          const xOffset = cupCurrent * transitionOffsets.x;
-          const yOffset = cupCurrent * transitionOffsets.y;
-          realCup.style.transform = "translate(" + xOffset + "px, " + yOffset + "px)";
-        }
-      }
-    }
-  }
-
-  // Calculate coordinates
-  window.addEventListener("resize", calculateOffsets);
-  setTimeout(calculateOffsets, 600);
-
-  // Cinematic scroll snap controller
-  let isAnimatingScroll = false;
-  let lastScrollY = window.scrollY;
-
-  function smoothScrollTo(targetY, duration) {
-    isAnimatingScroll = true;
-    const startY = window.scrollY;
-    const difference = targetY - startY;
-    const startTime = performance.now();
-
-    function step(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Cubic ease-in-out curve
-      const ease = progress < 0.5 
-        ? 4 * progress * progress * progress 
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-      window.scrollTo(0, startY + difference * ease);
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        lastScrollY = window.scrollY;
-        setTimeout(function() {
-          isAnimatingScroll = false;
-        }, 50);
-      }
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  window.addEventListener("scroll", function () {
-    const gallery = document.getElementById("gallery");
-    if (!gallery) return;
-
-    const rect = gallery.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const startScroll = windowHeight;
-    const endScroll = windowHeight * 0.2;
-
-    const totalDistance = startScroll - endScroll;
-    const currentDistance = startScroll - rect.top;
-
-    let progress = currentDistance / totalDistance;
-    progress = Math.min(Math.max(progress, 0), 1);
-
-    if (isDesktop && !isAnimatingScroll) {
-      const scrollY = window.scrollY;
-      const direction = scrollY > lastScrollY ? "down" : "up";
-
-      // 1. Hero -> Gallery snap
-      if (direction === "down" && lastScrollY <= 50 && scrollY > 50) {
-        const galleryTop = gallery.getBoundingClientRect().top + window.scrollY;
-        var cupTargetEl = document.getElementById("gallery-cup-target");
-        var snapTarget = galleryTop;
-        if (cupTargetEl) {
-          var cupRect = cupTargetEl.getBoundingClientRect();
-          var cupLandingBottom = cupRect.bottom + window.scrollY;
-          snapTarget = Math.max(0, cupLandingBottom - windowHeight + 40);
-        }
-        smoothScrollTo(snapTarget, 1200);
-        return;
-      }
-      // 2. Gallery -> Hero snap
-      else if (direction === "up" && lastScrollY >= (gallery.getBoundingClientRect().top + window.scrollY) - 10 && scrollY < (gallery.getBoundingClientRect().top + window.scrollY) - 80) {
-        smoothScrollTo(0, 1200);
-        return;
-      } else {
-        lastScrollY = scrollY;
-      }
-    } else if (isAnimatingScroll) {
-      lastScrollY = window.scrollY;
-    }
-// Apply quadratic ease-in-out curve
-    const easedProgress = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-    const cards = gallery.querySelectorAll(".frochi-gallery-card");
-    const galleryLandingCup = document.getElementById("gallery-landing-cup");
-    const galleryCupImg = document.getElementById("gallery-cup-img");
-    const heroCup = document.getElementById("frochi-cup-wrap");
-    const headerEl = document.getElementById("gallery-header");
-    const headerSubtext = document.getElementById("gallery-header-subtext");
-    const landingSubtext = document.getElementById("gallery-landing-subtext");
-
-    if (isDesktop) {
-      // 1. Animate header
-      if (headerEl) {
-        let headerProgress = easedProgress / 0.8;
-        headerProgress = Math.min(Math.max(headerProgress, 0), 1);
-        const headerY = 175 * headerProgress;
-        const headerScale = 0.95 + 0.05 * headerProgress;
-        headerEl.style.transform = "translateY(" + headerY + "px) scale(" + headerScale + ")";
-      }
-
-      // Header subtext is no longer faded — it was removed from the header block
-
-      // 2. Animate fanning cards
-      cards.forEach((card, idx) => {
-        const width = 44;
-        let targetRotate = 0;
-        if (idx % 2 === 0) {
-          if (idx === 0) targetRotate = -6;
-          else if (idx === 2) targetRotate = -10;
-          else if (idx === 4) targetRotate = -5;
-        } else {
-          if (idx === 1) targetRotate = 6;
-          else if (idx === 3) targetRotate = 10;
-          else if (idx === 5) targetRotate = 5;
-        }
-        const rotate = easedProgress * targetRotate;
-
-        let left = 0;
-        if (idx % 2 === 0) {
-          left = 0 + easedProgress * -15;
-        } else {
-          left = 56 + easedProgress * 15;
-        }
-
-        let top = 0;
-        if (idx === 0 || idx === 1) {
-          top = 0;
-        } else if (idx === 2 || idx === 3) {
-          top = 35;
-        } else if (idx === 4 || idx === 5) {
-          top = 70;
-        }
-        card.style.top = top + "%";
-        card.style.left = left + "%";
-        card.style.width = width + "%";
-        card.style.transform = "rotate(" + rotate + "deg)";
-      });
-
-      // 3. Drive cup position directly from scroll progress (sync with scroll)
-      var cupProgress = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-      var heroCupEl = document.getElementById("frochi-cup-wrap");
-      if (heroCupEl && isDesktop) {
-        var xOffset = cupProgress * transitionOffsets.x;
-        var yOffset = cupProgress * transitionOffsets.y;
-        heroCupEl.style.transform = "translate(" + xOffset + "px, " + yOffset + "px)";
-        heroCupEl.style.zIndex = "50";
-        heroCupEl.style.opacity = "1";
-
-        var heroOpacity = Math.max(1 - cupProgress * 6.66, 0);
-        var fr1 = document.getElementById("fr-item-1");
-        var fr2 = document.getElementById("fr-item-2");
-        var fr3 = document.getElementById("fr-item-3");
-        if (fr1) fr1.style.opacity = heroOpacity;
-        if (fr2) fr2.style.opacity = heroOpacity;
-        if (fr3) fr3.style.opacity = heroOpacity;
-      }
-
-      var landingSubtextEl = document.getElementById("gallery-landing-subtext");
-      if (landingSubtextEl && isDesktop) {
-        // Moves down in parallax with scroll — more travel than header so it stays below the cup
-        var subtextProgress = Math.min(Math.max(easedProgress / 0.8, 0), 1);
-        var subtextY = 260 * subtextProgress;
-        landingSubtextEl.style.transform = "translateY(" + subtextY + "px)";
-        landingSubtextEl.style.opacity = "1";
-      }
-
-      if (galleryLandingCup) {
-        galleryLandingCup.style.opacity = "1";
-      }
-    } else {
-      if (headerEl) headerEl.style.transform = "";
-      if (headerSubtext) headerSubtext.style.opacity = "1";
-      if (landingSubtextEl) landingSubtextEl.style.transform = "";
-      if (galleryLandingCup) galleryLandingCup.style.opacity = "1";
-      if (galleryCupImg) galleryCupImg.style.transform = "";
-      if (heroCup) {
-        heroCup.style.opacity = "1";
-        heroCup.style.transform = "";
-      }
-
-      const fr1 = document.getElementById("fr-item-1");
-      const fr2 = document.getElementById("fr-item-2");
-      const fr3 = document.getElementById("fr-item-3");
-      if (fr1) fr1.style.opacity = "1";
-      if (fr2) fr2.style.opacity = "1";
-      if (fr3) fr3.style.opacity = "1";
-      
-      cards.forEach((card, idx) => {
-        card.style.top = "";
-        card.style.left = "";
-        card.style.width = "";
-        
-        let mobileRotate = 0;
-        if (idx === 0) mobileRotate = -2;
-        else if (idx === 1) mobileRotate = 2;
-        else if (idx === 2) mobileRotate = -1;
-        else if (idx === 3) mobileRotate = 1;
-        else if (idx === 4) mobileRotate = -2;
-        else if (idx === 5) mobileRotate = 2;
-        card.style.transform = "rotate(" + mobileRotate + "deg)";
-      });
-    }
-  });
-
-  // Brand Story: reveal-on-scroll (header, image column, quote panel, facts strip)
-  var storyRevealEls = [
-    document.getElementById("story-header"),
-    document.getElementById("story-image-column"),
-    document.getElementById("story-quote-panel"),
-    document.getElementById("story-facts")
-  ];
-  if ("IntersectionObserver" in window) {
-    var storyObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          storyObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: "0px 0px -80px 0px" });
-    storyRevealEls.forEach(function (el) { if (el) storyObserver.observe(el); });
-  } else {
-    storyRevealEls.forEach(function (el) { if (el) el.classList.add("is-visible"); });
-  }
-
-  // Init Actions
-  updateFlavor(0);
-
-
-  // Call once to initialize page state based on load scroll position
-  setTimeout(function() {
-    window.dispatchEvent(new Event("scroll"));
-  }, 100);
-});`;
+      document.getElementById("fr-item-1").style.backgroundImage = \`url('\${f.fruits[0]}')\\`;
 
   return { html, css, js };
 }
