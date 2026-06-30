@@ -325,11 +325,11 @@ export default function App() {
 
   const activeFlavor = FLAVORS[activeIdx];
 
-  // Helper to compute the shortest circular difference in range [-2, 3] for 6 flavors
+  // Helper to compute the shortest circular difference in range [-2, 2] for 5 flavors
   const getRelativeDiff = (i: number, active: number) => {
     let diff = i - active;
     if (diff < -2) diff += FLAVORS.length;
-    if (diff > 3) diff -= FLAVORS.length;
+    if (diff > 2) diff -= FLAVORS.length;
     return diff;
   };
 
