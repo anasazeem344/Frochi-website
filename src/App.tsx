@@ -807,6 +807,31 @@ export default function App() {
             <div className="lg:col-span-6 h-[120px] lg:h-full pointer-events-none select-none" />
 
           </div>
+
+          {/* Scroll Down Indicator & Subtle Section Divider */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#82298a]/20 to-transparent z-20" />
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 0.8, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            whileHover={{ opacity: 1, scale: 1.05 }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5 cursor-pointer pointer-events-auto select-none"
+            onClick={() => {
+              const gallery = document.getElementById("gallery");
+              if (gallery) {
+                gallery.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            <span className="text-[9px] uppercase tracking-widest font-mono font-bold text-[#82298a]">Scroll Down</span>
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="w-5 h-8 rounded-full border border-[#82298a]/40 flex justify-center p-1"
+            >
+              <motion.div className="w-1 h-1.5 rounded-full bg-[#82298a]" />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* GALLERY SECTION (SHARE THE CHI) */}

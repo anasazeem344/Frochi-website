@@ -56,6 +56,16 @@ export function generateWordPressCode(): { html: string; css: string; js: string
         </div>
         
       </div>
+
+      <!-- Scroll Down Indicator & Subtle Section Divider -->
+      <div class="frochi-scroll-divider"></div>
+      <div class="frochi-scroll-indicator" onclick="const gal = document.getElementById('gallery'); if (gal) { gal.scrollIntoView({ behavior: 'smooth' }); }">
+        <span class="scroll-text">Scroll Down</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+
     </main>
 
     <!-- GALLERY SECTION (SHARE THE CHI) -->
@@ -213,6 +223,71 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 </div>`;
 
   const css = `
+.frochi-scroll-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(130, 41, 138, 0.2), transparent);
+  z-index: 2;
+}
+
+.frochi-scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: var(--frochi-transition);
+  user-select: none;
+}
+
+.frochi-scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.05);
+}
+
+.scroll-text {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--frochi-purple);
+}
+
+.scroll-mouse {
+  width: 20px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(130, 41, 138, 0.4);
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 6px;
+  border-radius: 2px;
+  background-color: var(--frochi-purple);
+  animation: scrollWheelAnim 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollWheelAnim {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(4px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
 .frochi-hero-gallery-wrapper {
   position: relative;
   background: linear-gradient(180deg, #ffffff 0%, #faf8f0 100%);
