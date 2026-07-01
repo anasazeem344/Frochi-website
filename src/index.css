@@ -36,3 +36,47 @@
   overflow: hidden;
   isolation: isolate;
 }
+
+/* WORDPRESS / ELEMENTOR THEME CONFLICT RESETS */
+#frochi-container,
+#root {
+  --font-sans: "Poppins", "Inter", sans-serif !important;
+  --font-display: "Space Grotesk", "Bahnschrift", sans-serif !important;
+  --font-serif: "Playfair Display", Georgia, serif !important;
+}
+
+#frochi-container .font-sans,
+#root .font-sans {
+  font-family: "Poppins", "Inter", sans-serif !important;
+}
+
+#frochi-container .font-display,
+#root .font-display {
+  font-family: "Space Grotesk", "Bahnschrift", sans-serif !important;
+}
+
+#frochi-container .font-serif,
+#root .font-serif {
+  font-family: "Playfair Display", Georgia, serif !important;
+}
+
+/* Reset button borders, backgrounds, paddings to fix red outline overlays in Our Flavours */
+#frochi-container button,
+#root button,
+#frochi-container .our-flavours-cup,
+#root .our-flavours-cup {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#frochi-container button::before,
+#frochi-container button::after,
+#root button::before,
+#root button::after {
+  display: none !important;
+}

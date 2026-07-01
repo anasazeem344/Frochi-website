@@ -163,7 +163,6 @@ function TiltCard({ className, style, initial, whileInView, viewport, transition
 export default function App() {
   const [activeIdx, setActiveIndex] = useState(0);
   const [ourFlavourIdx, setOurFlavourIdx] = useState(0);
-
   // "Our Flavours" drag/scroll carousel
   const ourFlavoursStageRef = useRef<HTMLDivElement>(null);
   const [ourFlavoursGap, setOurFlavoursGap] = useState(260);
@@ -171,18 +170,18 @@ export default function App() {
   const ourFlavoursX = useMotionValue(0);
 
   useEffect(() => {
-    const measure = () => {
-      if (ourFlavoursStageRef.current) {
-        const w = ourFlavoursStageRef.current.getBoundingClientRect().width;
+    if (!ourFlavoursStageRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const w = entry.contentRect.width;
         if (w > 0) {
           setOurFlavoursGap(w * 0.23);
           setOurFlavoursStageWidth(w);
         }
       }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    });
+    observer.observe(ourFlavoursStageRef.current);
+    return () => observer.disconnect();
   }, []);
 
 
@@ -201,7 +200,10 @@ export default function App() {
 
   const prevActiveIdxRef = useRef(0);
   const prevActiveIdx = prevActiveIdxRef.current;
-  useEffect(() => { prevActiveIdxRef.current = activeIdx; });
+
+  useEffect(() => {
+    prevActiveIdxRef.current = activeIdx;
+  }); // Runs after every render to keep ref in sync for the next render
 
   // Gallery Refs & Layout States
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -213,10 +215,10 @@ export default function App() {
   const [easedProgress, setEasedProgress] = useState(0);
 
   // Setup scroll progress of gallery section:
-  // Starts when gallery section top enters viewport bottom, ends when gallery center is centered in viewport
+  // Starts when gallery section top enters viewport bottom, ends when gallery is 25% from top
   const { scrollYProgress: rawProgress } = useScroll({
     target: galleryRef,
-    offset: ["start end", "start 5%"]
+    offset: ["start end", "start 25%"]
   });
 
   const scrollProgress = useSpring(rawProgress, {
@@ -340,11 +342,11 @@ export default function App() {
           // Scroll so the cup bottom sits at the viewport bottom (40px breathing room)
           snapTarget = Math.max(0, cupLandingBottom - windowHeight + 40);
         }
-        smoothScrollTo(snapTarget, 1200);
+        smoothScrollTo(snapTarget, 2000);
       }
       // 2. Gallery -> Hero snap
       else if (direction === "up" && lastScrollY >= galleryTop - 10 && scrollY < galleryTop - 80) {
-        smoothScrollTo(0, 1200);
+        smoothScrollTo(0, 1800);
       } else {
         lastScrollY = scrollY;
       }
