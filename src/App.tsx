@@ -53,7 +53,7 @@ interface OurFlavourCupItemProps {
 function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDesktop }: OurFlavourCupItemProps) {
   const scale = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
-    return Math.max(1.0 - dist * 0.22, 0.55);
+    return Math.max(1.1 - dist * 0.25, 0.5);
   });
   const opacity = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
@@ -76,7 +76,7 @@ function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDe
       <img
         src={flavor.cupImg}
         alt={flavor.name}
-        className="h-44 sm:h-56 w-auto object-contain drop-shadow-xl pointer-events-none"
+        className="h-52 sm:h-72 w-auto object-contain drop-shadow-xl pointer-events-none"
         referrerPolicy="no-referrer"
         draggable={false}
       />

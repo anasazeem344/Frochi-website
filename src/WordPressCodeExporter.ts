@@ -247,6 +247,16 @@ export function generateWordPressCode(): { html: string; css: string; js: string
   margin: 0 !important;
 }
 
+#frochi-container button {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .frochi-scroll-divider {
   position: absolute;
   bottom: 0;
@@ -1046,7 +1056,7 @@ body {
 }
 
 .our-flavours-cup img {
-  height: 240px;
+  height: 208px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
@@ -1057,7 +1067,7 @@ body {
     top: 184px;
   }
   .our-flavours-cup img {
-    height: 320px;
+  height: 208px;
   }
 }
 
