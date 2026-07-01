@@ -8,6 +8,47 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
+/*
+ * WORDPRESS COMPATIBILITY GUARD
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Tailwind v4 uses calc(var(--spacing) * N) for ALL size utilities.
+ * WordPress themes (Astra, Hello Elementor, etc.) often declare --spacing at
+ * :root with a completely different value (e.g. 1rem or 8px), which causes
+ * every Tailwind class (h-56, p-4, text-xl, etc.) to compute totally wrong sizes.
+ *
+ * Fix: Pin ALL critical Tailwind v4 variables inside #root so they cannot
+ * be overridden by anything outside our app's DOM subtree.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+#root {
+  /* Core spacing scale — MUST be 0.25rem for all Tailwind size utilities to work */
+  --spacing: 0.25rem !important;
+
+  /* Font families */
+  --font-sans: "Poppins", "Inter", sans-serif !important;
+  --font-display: "Gazpacho Black", "Gazpacho", "Space Grotesk", "Bahnschrift", sans-serif !important;
+  --font-serif: "Playfair Display", Georgia, serif !important;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+
+  /* Text scale */
+  --text-xs: 0.75rem !important;
+  --text-sm: 0.875rem !important;
+  --text-base: 1rem !important;
+  --text-lg: 1.125rem !important;
+  --text-xl: 1.25rem !important;
+  --text-2xl: 1.5rem !important;
+  --text-3xl: 1.875rem !important;
+  --text-4xl: 2.25rem !important;
+  --text-5xl: 3rem !important;
+  --text-6xl: 3.75rem !important;
+  --text-7xl: 4.5rem !important;
+  --text-8xl: 6rem !important;
+  --text-9xl: 8rem !important;
+
+  /* Prevent WordPress box-sizing changes from leaking in */
+  box-sizing: border-box;
+}
+
 .glass-navbar {
   position: relative;
   isolation: isolate;
