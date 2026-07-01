@@ -53,7 +53,7 @@ interface OurFlavourCupItemProps {
 function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDesktop }: OurFlavourCupItemProps) {
   const scale = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
-    return Math.max(1.1 - dist * 0.25, 0.5);
+    return Math.max(1.2 - dist * 0.25, 0.8);
   });
   const opacity = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
@@ -76,7 +76,7 @@ function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDe
       <img
         src={flavor.cupImg}
         alt={flavor.name}
-        className="h-52 sm:h-72 w-auto object-contain drop-shadow-xl pointer-events-none"
+        className="h-56 sm:h-78 w-auto object-contain drop-shadow-xl pointer-events-none"
         referrerPolicy="no-referrer"
         draggable={false}
       />
@@ -376,12 +376,12 @@ export default function App() {
 
   const getSlotProps = (diff: number) => {
     switch (diff) {
-      case -2: return { left: "-10%", top: "-9%",  rotate: 14,  opacity: 0.75, scale: 1.0,   zIndex: 5,  pointerEvents: "auto" as const };
-      case -1: return { left: "15%",  top: "7%",   rotate: 7,   opacity: 0.95, scale: 1.0,   zIndex: 10, pointerEvents: "auto" as const };
-      case 0:  return { left: "40%",  top: "23%",  rotate: 0,   opacity: 1.0,  scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
-      case 1:  return { left: "65%",  top: "39%",  rotate: -12, opacity: 0.9,  scale: 1.0,   zIndex: 20, pointerEvents: "auto" as const };
-      case 2:  return { left: "90%",  top: "55%",  rotate: -24, opacity: 0.65, scale: 0.9,   zIndex: 25, pointerEvents: "auto" as const };
-      default: return { left: "-20%", top: "-25%", rotate: 20,  opacity: 0,    scale: 0.9,   zIndex: 1,  pointerEvents: "none" as const };
+      case -2: return { left: "-10%", top: "-9%", rotate: 14, opacity: 0.75, scale: 1.0, zIndex: 5, pointerEvents: "auto" as const };
+      case -1: return { left: "15%", top: "7%", rotate: 7, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
+      case 0: return { left: "40%", top: "23%", rotate: 0, opacity: 1.0, scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
+      case 1: return { left: "65%", top: "39%", rotate: -12, opacity: 0.9, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
+      case 2: return { left: "90%", top: "55%", rotate: -24, opacity: 0.65, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
+      default: return { left: "-20%", top: "-25%", rotate: 20, opacity: 0, scale: 0.9, zIndex: 1, pointerEvents: "none" as const };
     }
   };
 
@@ -544,7 +544,7 @@ export default function App() {
         </div>
 
         {/* HERO SECTION */}
-        <section id="hero-section" className="relative z-20 pb-16 pt-48 px-6 sm:px-10 lg:px-16 w-full bg-transparent min-h-[600px] sm:min-h-[700px] flex items-center">
+        <section id="hero-section" className="relative z-30 pb-16 pt-48 px-6 sm:px-10 lg:px-16 w-full bg-transparent min-h-[600px] sm:min-h-[700px] flex items-center">
 
           {/* Top-Right Stats Counter Overlay mimicking the Coffee Lounge video details */}
           <div className="absolute top-40 right-10 hidden md:flex items-center gap-6 z-30 font-sans select-none text-white">
@@ -641,9 +641,9 @@ export default function App() {
                   className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
                   animate={{ left: slot.left, top: slot.top, rotate: slot.rotate, opacity: slot.opacity }}
                   transition={{
-                    left:    isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                    top:     isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                    rotate:  isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
+                    left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    top: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    rotate: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
                     opacity: { duration: 0.3 },
                   }}
                   style={{
@@ -1223,7 +1223,7 @@ export default function App() {
               className="inline-flex items-center gap-2.5 self-start bg-white/8 hover:bg-[#82298a]/60 border border-white/10 hover:border-[#82298a]/60 text-white/70 hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
               @frochiuae
             </a>
@@ -1273,7 +1273,7 @@ export default function App() {
               >
                 <span className="w-8 h-8 rounded-full bg-white/8 group-hover:bg-[#82298a]/50 flex items-center justify-center transition-colors duration-200 shrink-0">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                   </svg>
                 </span>
                 <span className="text-sm">instagram.com/frochiuae</span>
