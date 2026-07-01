@@ -41,7 +41,7 @@
 #frochi-container,
 #root {
   --font-sans: "Poppins", "Inter", sans-serif !important;
-  --font-display: "Space Grotesk", "Bahnschrift", sans-serif !important;
+  --font-display: "Gazpacho Black", "Gazpacho", "Space Grotesk", "Bahnschrift", sans-serif !important;
   --font-serif: "Playfair Display", Georgia, serif !important;
 }
 
@@ -52,7 +52,7 @@
 
 #frochi-container .font-display,
 #root .font-display {
-  font-family: "Space Grotesk", "Bahnschrift", sans-serif !important;
+  font-family: "Gazpacho Black", "Gazpacho", "Space Grotesk", "Bahnschrift", sans-serif !important;
 }
 
 #frochi-container .font-serif,

@@ -53,7 +53,7 @@ interface OurFlavourCupItemProps {
 function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDesktop }: OurFlavourCupItemProps) {
   const scale = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
-    return Math.max(1.15 - dist * 0.27, 0.5);
+    return Math.max(1.0 - dist * 0.22, 0.55);
   });
   const opacity = useTransform(trackX, (tx) => {
     const dist = Math.abs(idx * gap + tx) / gap;
@@ -76,7 +76,7 @@ function OurFlavourCupItem({ flavor, idx, gap, stageWidth, trackX, onClick, isDe
       <img
         src={flavor.cupImg}
         alt={flavor.name}
-        className="h-60 sm:h-80 w-auto object-contain drop-shadow-xl pointer-events-none"
+        className="h-44 sm:h-56 w-auto object-contain drop-shadow-xl pointer-events-none"
         referrerPolicy="no-referrer"
         draggable={false}
       />
@@ -237,9 +237,9 @@ export default function App() {
 
   const [easedCupProgress, setEasedCupProgress] = useState(0);
 
-  // Drive cup position directly from rawProgress (scroll position)
-  // so the cup moves in perfect sync with the smooth scroll animation
-  useMotionValueEvent(rawProgress, "change", (latest) => {
+  // Drive cup position directly from spring-smoothed scrollProgress
+  // so the cup moves in a soft, lagged, and elegant motion
+  useMotionValueEvent(scrollProgress, "change", (latest) => {
     setEasedCupProgress(easeInOutQuad(Math.min(Math.max(latest, 0), 1)));
   });
 
@@ -331,7 +331,7 @@ export default function App() {
       // 1. Hero -> Gallery snap
       // Target: scroll so the cup landing zone's BOTTOM aligns with the viewport bottom.
       // This gives a cinematic feel where the viewport "follows" the cup base as it lands.
-      if (direction === "down" && lastScrollY <= 50 && scrollY > 50) {
+      if (direction === "down" && lastScrollY <= 100 && scrollY > 100) {
         const cupTarget = document.getElementById("cup-landing-target");
         let snapTarget = galleryTop;
         if (cupTarget) {
@@ -342,11 +342,11 @@ export default function App() {
           // Scroll so the cup bottom sits at the viewport bottom (40px breathing room)
           snapTarget = Math.max(0, cupLandingBottom - windowHeight + 40);
         }
-        smoothScrollTo(snapTarget, 2000);
+        smoothScrollTo(snapTarget, 2800);
       }
       // 2. Gallery -> Hero snap
-      else if (direction === "up" && lastScrollY >= galleryTop - 10 && scrollY < galleryTop - 80) {
-        smoothScrollTo(0, 1800);
+      else if (direction === "up" && lastScrollY >= galleryTop - 10 && scrollY < galleryTop - 100) {
+        smoothScrollTo(0, 2400);
       } else {
         lastScrollY = scrollY;
       }
@@ -442,7 +442,7 @@ export default function App() {
         <div className="navbar">
           {/* Brand/Logo */}
           <a href="#" className="navbar-brand">
-            <img src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png" alt="Frochi Logo" className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png" alt="Frochi Logo" className="h-6 md:h-7 w-auto object-contain drop-shadow-sm" />
           </a>
 
           {/* Navigation Links */}
@@ -493,7 +493,7 @@ export default function App() {
       <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-header">
           <a href="#" className="mobile-menu-brand">
-            <img src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png" alt="Frochi Logo" className="h-8 w-auto object-contain" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/06/logo-clr.png" alt="Frochi Logo" className="h-6 w-auto object-contain" />
           </a>
           <button
             className="mobile-menu-close"

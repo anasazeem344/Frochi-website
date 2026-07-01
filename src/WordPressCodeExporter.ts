@@ -223,8 +223,18 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 #frochi-container,
 #root {
   --font-sans: "Poppins", "Inter", sans-serif !important;
-  --font-display: "Space Grotesk", "Bahnschrift", sans-serif !important;
+  --font-display: "Gazpacho Black", "Gazpacho", "Space Grotesk", "Bahnschrift", sans-serif !important;
   --font-serif: "Playfair Display", Georgia, serif !important;
+}
+
+#frochi-container button {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #frochi-container button {
