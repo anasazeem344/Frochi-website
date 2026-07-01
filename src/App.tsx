@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValueEvent, useMotionValue, animate, type MotionValue } from "motion/react";
 import {
   Sparkles,
@@ -14,7 +14,8 @@ import {
   HelpCircle,
   Clock,
   Plus,
-  BookOpen
+  BookOpen,
+  Mail
 } from "lucide-react";
 import { FLAVORS, TOPPINGS, GALLERY_ITEMS } from "./data";
 import { Flavor, Topping, GalleryItem } from "./types";
@@ -118,6 +119,47 @@ function GalleryCard({ item, index }: GalleryCardProps) {
 }
 
 
+// 3-D tilt card — elevates and rotates toward the mouse cursor on hover
+function TiltCard({ className, style, initial, whileInView, viewport, transition, children }: {
+  key?: string | number;
+  className?: string;
+  style?: Record<string, unknown>;
+  initial?: Record<string, unknown>;
+  whileInView?: Record<string, unknown>;
+  viewport?: Record<string, unknown>;
+  transition?: Record<string, unknown>;
+  children: ReactNode;
+}) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), { stiffness: 500, damping: 45 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), { stiffness: 500, damping: 45 });
+
+  return (
+    <motion.div
+      initial={initial}
+      whileInView={whileInView}
+      whileHover={{ y: -10, scale: 1.04, zIndex: 100 }}
+      viewport={viewport}
+      transition={transition}
+      className={className}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      style={{ ...style, rotateX, rotateY } as any}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+        mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+      }}
+      onMouseLeave={() => {
+        mouseX.set(0);
+        mouseY.set(0);
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [activeIdx, setActiveIndex] = useState(0);
   const [ourFlavourIdx, setOurFlavourIdx] = useState(0);
@@ -159,10 +201,7 @@ export default function App() {
 
   const prevActiveIdxRef = useRef(0);
   const prevActiveIdx = prevActiveIdxRef.current;
-
-  useEffect(() => {
-    prevActiveIdxRef.current = activeIdx;
-  }); // Runs after every render to keep ref in sync for the next render
+  useEffect(() => { prevActiveIdxRef.current = activeIdx; });
 
   // Gallery Refs & Layout States
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -333,74 +372,16 @@ export default function App() {
     return diff;
   };
 
-  // Visual coordinates along the horizontal & diagonal track matching the coffee lounge exact vibe
   const getSlotProps = (diff: number) => {
     switch (diff) {
-      case -2:
-        return {
-          left: "14%",
-          top: "-9%",
-          rotate: 14,
-          opacity: 0.8,
-          scale: 1.0,
-          zIndex: 5,
-          pointerEvents: "auto" as const
-        };
-      case -1:
-        return {
-          left: "34%",
-          top: "7%",
-          rotate: 7,
-          opacity: 0.95,
-          scale: 1.0,
-          zIndex: 10,
-          pointerEvents: "auto" as const
-        };
-      case 0: // Active Center Cup
-        return {
-          left: "54%",
-          top: "23%",
-          rotate: 0,
-          opacity: 1.0,
-          scale: 1.125,
-          zIndex: 15,
-          pointerEvents: "auto" as const
-        };
-      case 1:
-        return {
-          left: "74%",
-          top: "39%",
-          rotate: -12,
-          opacity: 0.9,
-          scale: 1.0,
-          zIndex: 20,
-          pointerEvents: "auto" as const
-        };
-      case 2:
-        return {
-          left: "94%",
-          top: "55%",
-          rotate: -24,
-          opacity: 0.6,
-          scale: 0.9,
-          zIndex: 25,
-          pointerEvents: "auto" as const
-        };
-      case 3:
-      default:
-        return {
-          left: "-6%",
-          top: "-25%",
-          rotate: 20,
-          opacity: 0.6,
-          scale: 0.9,
-          zIndex: 1,
-          pointerEvents: "auto" as const
-        };
+      case -2: return { left: "-10%", top: "-9%",  rotate: 14,  opacity: 0.75, scale: 1.0,   zIndex: 5,  pointerEvents: "auto" as const };
+      case -1: return { left: "15%",  top: "7%",   rotate: 7,   opacity: 0.95, scale: 1.0,   zIndex: 10, pointerEvents: "auto" as const };
+      case 0:  return { left: "40%",  top: "23%",  rotate: 0,   opacity: 1.0,  scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
+      case 1:  return { left: "65%",  top: "39%",  rotate: -12, opacity: 0.9,  scale: 1.0,   zIndex: 20, pointerEvents: "auto" as const };
+      case 2:  return { left: "90%",  top: "55%",  rotate: -24, opacity: 0.65, scale: 0.9,   zIndex: 25, pointerEvents: "auto" as const };
+      default: return { left: "-20%", top: "-25%", rotate: 20,  opacity: 0,    scale: 0.9,   zIndex: 1,  pointerEvents: "none" as const };
     }
   };
-
-
 
   // Exporter Drawer State
   const [isExporterOpen, setIsExporterOpen] = useState(false);
@@ -466,21 +447,22 @@ export default function App() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <a href="#hero-section" className="nav-link active">
-                <svg className="nav-icon" viewBox="0 0 24 24">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9,22 9,12 15,12 15,22"></polyline>
-                </svg>
                 <span>Home</span>
               </a>
             </li>
             <li className="nav-item">
               <a href="#brand-story" className="nav-link">
-                <svg className="nav-icon" viewBox="0 0 24 24">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                <span>Our Legacy</span>
+                <span>Our Story</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#our-flavours" className="nav-link">
+                <span>Flavours</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="https://frochi.ae/products/" className="nav-link" target="_blank" rel="noopener noreferrer">
+                <span>Products</span>
               </a>
             </li>
           </ul>
@@ -522,21 +504,22 @@ export default function App() {
         <ul className="mobile-menu-nav">
           <li className="mobile-menu-item">
             <a href="#hero-section" className="mobile-menu-link active" onClick={() => setIsMobileMenuOpen(false)}>
-              <svg className="mobile-menu-icon" viewBox="0 0 24 24">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9,22 9,12 15,12 15,22"></polyline>
-              </svg>
               <span>Home</span>
             </a>
           </li>
           <li className="mobile-menu-item">
             <a href="#brand-story" className="mobile-menu-link" onClick={() => setIsMobileMenuOpen(false)}>
-              <svg className="mobile-menu-icon" viewBox="0 0 24 24">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-              <span>Our Legacy</span>
+              <span>Our Story</span>
+            </a>
+          </li>
+          <li className="mobile-menu-item">
+            <a href="#our-flavours" className="mobile-menu-link" onClick={() => setIsMobileMenuOpen(false)}>
+              <span>Flavours</span>
+            </a>
+          </li>
+          <li className="mobile-menu-item">
+            <a href="https://frochi.ae/products/" className="mobile-menu-link" target="_blank" rel="noopener noreferrer">
+              <span>Products</span>
             </a>
           </li>
         </ul>
@@ -549,7 +532,7 @@ export default function App() {
       </div>
 
       {/* SEAMLESS HERO + GALLERY WRAPPER */}
-      <div className="relative w-full overflow-hidden bg-white border-b border-gray-100">
+      <div className="relative w-full bg-white border-b border-gray-100" style={{ overflowX: 'clip' }}>
         {/* Seamless Combined Background Gradient */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
           <div
@@ -580,12 +563,12 @@ export default function App() {
           </div>
 
           {/* FULL BLEED MULTI-CUP FLOATING STAGE BACKGROUND/MIDGROUND */}
-          <div className="absolute inset-0 z-10 w-full h-full select-none pointer-events-none">
+          <div className="absolute inset-0 z-10 w-full h-full select-none pointer-events-none overflow-hidden">
             {/* Static reference placeholder for measuring dynamic offset coordinate updates */}
             <div
               ref={heroActiveCupRef}
               className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] opacity-0 pointer-events-none"
-              style={{ left: "54%", top: "23%", transform: "scale(1.125)" }}
+              style={{ left: "40%", top: "23%", transform: "scale(1.125)" }}
             />
 
 
@@ -593,7 +576,7 @@ export default function App() {
             <div
               className="absolute z-10 w-[clamp(110px,18vw,320px)] aspect-square flex items-center justify-center pointer-events-none"
               style={{
-                left: "54%",
+                left: "40%",
                 top: "23%",
                 transform: "translate(-5%, -5%) scale(1.125)",
                 opacity: isDesktopLayout ? Math.max(1 - easedCupProgress * 6.66, 0) : 1
@@ -639,106 +622,69 @@ export default function App() {
                 })}
               </AnimatePresence>
             </div>
-            {/* CUPS + SHADOWS — single loop, outer wrapper handles position/rotate, inner handles scale only */}
+          </div>
+          {/* CUPS — own container without overflow-hidden so the center cup can travel into the gallery on scroll */}
+          <div className="absolute inset-0 z-30 w-full h-full select-none pointer-events-none" style={{ overflow: 'visible' }}>
+            {/* CUPS — slot-based carousel, springs between fixed positions on swipe */}
             {FLAVORS.map((flavor, index) => {
               const diff = getRelativeDiff(index, activeIdx);
-              const slotProps = getSlotProps(diff);
-              const isCenterActive = diff === 0;
+              const slot = getSlotProps(diff);
               const prevDiff = getRelativeDiff(index, prevActiveIdx);
-              const prevSlotProps = getSlotProps(prevDiff);
-              const prevLeftVal = parseFloat(prevSlotProps.left);
-              const currentLeftVal = parseFloat(slotProps.left);
-              const isWrapping = Math.abs(currentLeftVal - prevLeftVal) > 50;
-
+              const prevSlot = getSlotProps(prevDiff);
+              const isWrapping = Math.abs(parseFloat(slot.left) - parseFloat(prevSlot.left)) > 50;
+              const isCenterActive = diff === 0;
               return (
                 <motion.div
                   key={flavor.id}
-                  animate={{
-                    left: slotProps.left,
-                    top: slotProps.top,
-                    rotate: slotProps.rotate,
-                    opacity: slotProps.opacity,
-                    zIndex: slotProps.zIndex,
-                  }}
-                  transition={{
-                    left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                    top: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                    rotate: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
-                    opacity: { duration: 0.35, ease: "easeInOut" },
-                  }}
                   className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
+                  animate={{ left: slot.left, top: slot.top, rotate: slot.rotate, opacity: slot.opacity }}
+                  transition={{
+                    left:    isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    top:     isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
+                    rotate:  isWrapping ? { duration: 0 } : { type: "spring", stiffness: 100, damping: 20 },
+                    opacity: { duration: 0.3 },
+                  }}
                   style={{
-                    pointerEvents: slotProps.pointerEvents,
+                    pointerEvents: slot.pointerEvents,
                     x: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.x : 0,
                     y: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.y : 0,
-                    zIndex: isCenterActive ? 50 : slotProps.zIndex
+                    zIndex: isCenterActive ? 50 : slot.zIndex,
                   }}
                 >
-                  {/* Inner: scale + drag + float — shadow is NOT inside here */}
                   <motion.div
                     drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.2}
-                    onDragEnd={(e, { offset, velocity }) => {
-                      const swipe = Math.abs(offset.x) * velocity.x;
-                      if (swipe < -10000 || offset.x < -50) {
-                        setActiveIndex((prev) => (prev + 1) % FLAVORS.length);
-                      } else if (swipe > 10000 || offset.x > 50) {
-                        setActiveIndex((prev) => (prev - 1 + FLAVORS.length) % FLAVORS.length);
-                      }
-                    }}
-                    animate={{ scale: slotProps.scale }}
-                    transition={{
-                      scale: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
-                    }}
-                    whileHover={isCenterActive ? { scale: 1.05, rotate: 0 } : { scale: 1.05 }}
+                    animate={{ scale: slot.scale }}
+                    transition={{ scale: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 } }}
+                    whileHover={{ scale: 1.05 }}
                     onClick={() => setActiveIndex(index)}
-                    className="relative w-full h-full flex flex-col items-center cursor-pointer filter pointer-events-auto"
+                    onDragEnd={(_, { offset, velocity }) => {
+                      const projected = offset.x + velocity.x * 0.12;
+                      const steps = Math.round(-projected / 100);
+                      if (steps !== 0) setActiveIndex(prev => ((prev + steps) % FLAVORS.length + FLAVORS.length) % FLAVORS.length);
+                    }}
+                    className="relative w-full h-full flex flex-col items-center cursor-grab active:cursor-grabbing pointer-events-auto"
                   >
                     <motion.div
-                      animate={{
-                        y: isCenterActive ? [0, 8, 0] : (diff === -1 ? [0, -8, 0] : (diff === 1 ? [0, -10, 0] : [0, 6, 0]))
-                      }}
-                      transition={{
-                        y: {
-                          duration: isCenterActive ? 3.5 : (diff === -1 ? 4.0 : (diff === 1 ? 4.5 : 5.0)),
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.1
-                        }
-                      }}
+                      animate={{ y: isCenterActive ? [0, 8, 0] : diff === -1 ? [0, -8, 0] : diff === 1 ? [0, -10, 0] : [0, 6, 0] }}
+                      transition={{ y: { duration: isCenterActive ? 3.5 : diff === -1 ? 4.0 : diff === 1 ? 4.5 : 5.0, repeat: Infinity, ease: "easeInOut", delay: index * 0.1 } }}
                       className="relative w-full h-full flex flex-col items-center"
                     >
                       <img
                         src={flavor.cupImg}
                         alt={flavor.name}
                         className="w-full h-auto object-contain selection:bg-transparent cursor-pointer z-10 relative"
-                        style={{
-                          filter: isCenterActive
-                            ? "drop-shadow(0 25px 35px #82298a60)"
-                            : "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08))"
-                        }}
+                        style={{ filter: isCenterActive ? "drop-shadow(0 25px 35px #82298a60)" : "drop-shadow(0 8px 16px rgba(0,0,0,0.08))" }}
                         referrerPolicy="no-referrer"
                         draggable={false}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveIndex(index);
-                        }}
+                        onClick={e => { e.stopPropagation(); setActiveIndex(index); }}
                       />
-
-
-
-                      {/* Tooltip name label */}
                       {!isCenterActive && (
                         <span
                           className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm border border-gray-100 shadow-sm text-[9px] font-mono px-2 py-0.5 rounded-full text-gray-500 font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-30 cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveIndex(index);
-                          }}
-                        >
-                          {flavor.name}
-                        </span>
+                          onClick={e => { e.stopPropagation(); setActiveIndex(index); }}
+                        >{flavor.name}</span>
                       )}
                     </motion.div>
                   </motion.div>
@@ -833,7 +779,7 @@ export default function App() {
         <section
           ref={galleryRef}
           id="gallery"
-          className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-transparent relative z-10 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
+          className="py-24 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto bg-transparent relative z-20 min-h-[950px] md:min-h-[1450px] flex items-center justify-center overflow-visible"
         >
           <div className="relative w-full max-w-[1250px] mx-auto flex flex-col items-center min-h-[900px] md:h-[1350px] md:justify-start">
 
@@ -968,16 +914,21 @@ export default function App() {
                   : { zIndex: (idx === 0 || idx === 1) ? 30 : (idx === 2 || idx === 3) ? 20 : 10 };
 
                 return (
-                  <motion.div
+                  <TiltCard
                     key={idx}
                     initial={{ opacity: 0, scale: 0.95, y: 30 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: idx * 0.08 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: idx * 0.08,
+                      y: { type: "spring", stiffness: 380, damping: 30, delay: idx * 0.08 },
+                      scale: { type: "spring", stiffness: 380, damping: 30, delay: idx * 0.08 },
+                    }}
                     className={
                       isDesktopLayout
-                        ? "absolute aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-shadow border border-gray-100 bg-white"
-                        : `${getMobileCardStyle(idx)} relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-md hover:shadow-xl transition-all border border-gray-100 bg-white`
+                        ? "absolute aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-md border border-gray-100 bg-white cursor-pointer"
+                        : `${getMobileCardStyle(idx)} relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-md border border-gray-100 bg-white cursor-pointer`
                     }
                     style={dynamicStyle}
                   >
@@ -987,7 +938,6 @@ export default function App() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    {/* Bottom purple gradient text overlay */}
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#5a1c61]/95 via-[#5a1c61]/45 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
                       <h3 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight">
                         {card.title}
@@ -996,7 +946,7 @@ export default function App() {
                         {card.subtitle}
                       </p>
                     </div>
-                  </motion.div>
+                  </TiltCard>
                 );
               })}
             </div>
@@ -1017,21 +967,14 @@ export default function App() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="max-w-2xl mx-auto text-center mb-16 sm:mb-20"
+          className="max-w-2xl mx-auto text-center mb-12 sm:mb-16"
         >
-          <motion.span variants={fadeUpVariant} className="inline-flex items-center gap-2 text-xs font-bold font-mono text-[#82298a] uppercase tracking-widest mb-3">
+          <motion.span variants={fadeUpVariant} className="inline-flex items-center gap-2 text-xs font-bold font-mono text-[#82298a] uppercase tracking-widest mb-5">
             <span className="w-6 h-px bg-[#82298a]" />
             Our Story
             <span className="w-6 h-px bg-[#82298a]" />
           </motion.span>
 
-          <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#2C2133] leading-[1.05] mb-6">
-            Australian Bliss in the Heart of Dubai
-          </motion.h2>
-
-          <motion.p variants={fadeUpVariant} className="text-gray-600 text-base md:text-lg leading-relaxed">
-            Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.
-          </motion.p>
         </motion.div>
 
         {/* VISUAL PROOF ROW — photo paired with the brand-meaning quote, height-balanced */}
@@ -1105,9 +1048,8 @@ export default function App() {
             className="lg:col-span-7 relative flex items-center bg-[#fcfbf7] border border-[#efe9dc] rounded-[2rem] px-8 py-12 sm:px-14 sm:py-16 overflow-hidden"
           >
             <span className="absolute top-2 left-6 text-[140px] leading-none font-display text-[#82298a]/[0.06] select-none">"</span>
-            <p className="relative text-2xl md:text-3xl font-display font-medium italic text-[#82298a] leading-snug">
-              Where <strong className="not-italic font-extrabold">"Fro"</strong> stands for frozen, and{" "}
-              <strong className="not-italic font-extrabold">"Chi"</strong> represents flow, balance, and good energy.
+            <p className="relative text-xl md:text-2xl font-display font-medium italic text-[#82298a] leading-relaxed">
+              Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.
             </p>
           </motion.div>
         </div>
@@ -1241,48 +1183,6 @@ export default function App() {
       {/* BENTO SIGNATURE GALLERY (GRID OF PRODUCTS REFERRED IN XML) */}
 
 
-      {/* LOYALTY CARD POST CARD SECTION (REFERRED IN XML) */}
-      <section className="py-16 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto relative z-10 border-t-2 border-[#efece2]">
-        <div className="bg-gradient-to-r from-[#82298a] to-[#ca67a8] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-lg flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* Waves background overlay */}
-          <div className="absolute inset-0 opacity-[0.06] bg-[url('https://frochi.ae/wp-content/uploads/2025/06/Wave-2.png')] bg-cover mix-blend-overlay pointer-events-none select-none" />
-
-          <div className="relative z-10 text-left max-w-lg">
-            <span className="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full font-mono uppercase tracking-widest inline-block mb-3">
-              Unlock Free Swirls
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold leading-none mb-3">
-              Join the Fro-Chi Loyals Club
-            </h2>
-            <p className="text-white/80 text-sm leading-relaxed">
-              Log your Miracle SAVERS checkins or froyo purchases at our Dubai outlets on the 360ops ecosystem to gain rewards. Turn 5 swirls into 1 free double-topped signature cup!
-            </p>
-          </div>
-
-          <div className="shrink-0 relative z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-sm flex flex-col gap-4 w-full md:w-80">
-            <div className="flex justify-between items-center border-b border-white/10 pb-3">
-              <span className="font-bold text-xs uppercase tracking-wide">Swirl Loyalty Card</span>
-              <span className="text-[10px] font-mono opacity-80">UID: 2026-FRO</span>
-            </div>
-            {/* Loyalty Stamps */}
-            <div className="flex justify-around items-center py-2">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <div
-                  key={s}
-                  className={`w-10 h-10 rounded-full flex items-center justify-center border font-bold text-xs ${s <= 3
-                    ? "bg-[#fbae17] border-[#fbae17] text-[#2C2133]"
-                    : "bg-white/5 border-white/20 text-white/50"
-                    }`}
-                >
-                  {s <= 3 ? <Check size={16} /> : s}
-                </div>
-              ))}
-            </div>
-            <p className="text-[10px] text-white/70 text-center font-mono">3 / 5 Swirls Captured. Almost Free!</p>
-          </div>
-        </div>
-      </section>
-
       {/* FLOW SECTION — full-bleed brand image, scales to its natural aspect ratio at every breakpoint */}
       <section id="flow-section" className="relative w-full leading-[0]">
         <img
@@ -1294,31 +1194,105 @@ export default function App() {
       </section>
 
       {/* FOOTER SECTION */}
-      <footer className="bg-white border-t-2 border-[#efece2] py-12 px-6 sm:px-10 lg:px-16 relative z-10">
-        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6 border-b border-[#f0eae1] pb-8 mb-8">
-          <div className="text-center md:text-left leading-none">
-            <span className="text-2xl font-display font-black text-[#82298a] tracking-tight">
-              fro
-              <span className="relative text-[#fbae17]">
-                o
-                <span className="absolute -bottom-2 text-xl font-normal leading-none">◡</span>
-              </span>
-              chi
+      <footer className="bg-[#120118] text-white relative z-10 overflow-hidden">
+        {/* Subtle top accent gradient line */}
+        <div className="h-[3px] w-full bg-gradient-to-r from-[#82298a] via-[#fbae17] to-[#82298a]" />
+
+        {/* Ambient glow blobs */}
+        <div className="absolute -top-20 -left-20 w-[340px] h-[340px] bg-[#82298a]/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-10 right-10 w-[260px] h-[260px] bg-[#fbae17]/10 rounded-full blur-[80px] pointer-events-none" />
+
+        {/* Main grid */}
+        <div className="relative max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-16 pb-12 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+
+          {/* Column 1 — Brand */}
+          <div className="flex flex-col gap-5">
+            <span className="text-3xl font-display font-black tracking-tight leading-none">
+              fro<span className="text-[#fbae17]">o</span>chi
             </span>
-            <p className="text-gray-400 text-xs mt-3">Dubai froyo made simple, healthy, and probiotic.</p>
+            <p className="text-white/45 text-sm leading-relaxed max-w-[260px]">
+              Dubai's premium probiotic frozen yogurt — crafted with love, inspired by Australian froyo culture.
+            </p>
+            {/* Social pill */}
+            <a
+              href="https://www.instagram.com/frochiuae/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 self-start bg-white/8 hover:bg-[#82298a]/60 border border-white/10 hover:border-[#82298a]/60 text-white/70 hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              @frochiuae
+            </a>
           </div>
 
-          <div className="flex gap-4 text-xs font-bold text-gray-500 uppercase tracking-widest font-mono">
-            <a href="#hero-section" className="hover:text-[#82298a]">Home</a>
-            <a href="#brand-story" className="hover:text-[#82298a]">Our Legacy</a>
+          {/* Column 2 — Navigation */}
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.18em] font-bold font-mono text-white/30 mb-6">Explore</h4>
+            <nav className="flex flex-col gap-3.5">
+              {[
+                { label: "Home", href: "#hero-section", external: false },
+                { label: "Our Story", href: "#brand-story", external: false },
+                { label: "Flavours", href: "#our-flavours", external: false },
+                { label: "Products", href: "https://frochi.ae/products/", external: true },
+              ].map(({ label, href, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="text-white/55 hover:text-white text-sm font-medium transition-colors duration-200 w-fit"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
           </div>
+
+          {/* Column 3 — Contact */}
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.18em] font-bold font-mono text-white/30 mb-6">Get in Touch</h4>
+            <div className="flex flex-col gap-5">
+              <a
+                href="mailto:info@frochi.ae"
+                className="flex items-center gap-3 text-white/55 hover:text-white transition-colors duration-200 group"
+              >
+                <span className="w-8 h-8 rounded-full bg-white/8 group-hover:bg-[#82298a]/50 flex items-center justify-center transition-colors duration-200 shrink-0">
+                  <Mail size={13} />
+                </span>
+                <span className="text-sm">info@frochi.ae</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/frochiuae/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/55 hover:text-white transition-colors duration-200 group"
+              >
+                <span className="w-8 h-8 rounded-full bg-white/8 group-hover:bg-[#82298a]/50 flex items-center justify-center transition-colors duration-200 shrink-0">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </span>
+                <span className="text-sm">instagram.com/frochiuae</span>
+              </a>
+
+              <div className="flex items-center gap-3 text-white/40">
+                <span className="w-8 h-8 rounded-full bg-white/8 flex items-center justify-center shrink-0">
+                  <MapPin size={13} />
+                </span>
+                <span className="text-sm">Dubai, UAE</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-4">
-          <p>© 2026 Frochi Froyo Inc. Developed for seamless WordPress injection.</p>
-          <div className="flex gap-2">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#82298a]" />
-            <span>Dubai, UAE</span>
+        {/* Bottom bar */}
+        <div className="relative border-t border-white/8">
+          <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/25 font-mono">
+            <p>© 2026 Fro-Chi. All rights reserved.</p>
+            <p>Made with love in Dubai 🇦🇪</p>
           </div>
         </div>
       </footer>

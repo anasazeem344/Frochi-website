@@ -94,35 +94,35 @@ export function generateWordPressCode(): { html: string; css: string; js: string
             </div>
           </div>
           <div class="frochi-gallery-card" data-idx="2">
-            <img src="https://frochi.ae/wp-content/uploads/2025/07/1-1.png" alt="Yogurts" class="gallery-img" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/1-1.png" alt="Environment" class="gallery-img" />
             <div class="gallery-card-overlay"></div>
             <div class="gallery-card-content">
-              <h3 class="gallery-card-title">Yogurts</h3>
-              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+              <h3 class="gallery-card-title">Environment</h3>
+              <p class="gallery-card-subtitle">Sharing the Chi with the natural World</p>
             </div>
           </div>
           <div class="frochi-gallery-card" data-idx="3">
-            <img src="https://frochi.ae/wp-content/uploads/2025/07/6-1.png" alt="Yogurts" class="gallery-img" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/6-1.png" alt="Communi-Chi" class="gallery-img" />
             <div class="gallery-card-overlay"></div>
             <div class="gallery-card-content">
-              <h3 class="gallery-card-title">Yogurts</h3>
-              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+              <h3 class="gallery-card-title">Communi-Chi</h3>
+              <p class="gallery-card-subtitle">Sharing the Chi with local teams, Clubs and charities</p>
             </div>
           </div>
           <div class="frochi-gallery-card" data-idx="4">
-            <img src="https://frochi.ae/wp-content/uploads/2025/07/7-1.png" alt="Yogurts" class="gallery-img" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/7-1.png" alt="Chi-Club" class="gallery-img" />
             <div class="gallery-card-overlay"></div>
             <div class="gallery-card-content">
-              <h3 class="gallery-card-title">Yogurts</h3>
-              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+              <h3 class="gallery-card-title">Chi-Club</h3>
+              <p class="gallery-card-subtitle">Sharing the Chi with our Regs</p>
             </div>
           </div>
           <div class="frochi-gallery-card" data-idx="5">
-            <img src="https://frochi.ae/wp-content/uploads/2025/07/2-1.png" alt="Yogurts" class="gallery-img" />
+            <img src="https://frochi.ae/wp-content/uploads/2025/07/2-1.png" alt="Careers" class="gallery-img" />
             <div class="gallery-card-overlay"></div>
             <div class="gallery-card-content">
-              <h3 class="gallery-card-title">Yogurts</h3>
-              <p class="gallery-card-subtitle">Our Yogurt is your canvas</p>
+              <h3 class="gallery-card-title">Careers</h3>
+              <p class="gallery-card-subtitle">Elevate your Career with Fro-Chi</p>
             </div>
           </div>
         </div>
@@ -150,10 +150,6 @@ export function generateWordPressCode(): { html: string; css: string; js: string
       <span class="section-tag story-reveal">
         <span class="tag-line"></span>Our Story<span class="tag-line"></span>
       </span>
-      <h2 class="section-title story-reveal">Australian Bliss in the Heart of Dubai</h2>
-      <p class="story-lead story-reveal">
-        Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.
-      </p>
     </div>
 
     <!-- Visual proof row: photo paired with the brand-meaning quote -->
@@ -173,7 +169,7 @@ export function generateWordPressCode(): { html: string; css: string; js: string
 
       <div class="story-quote-panel" id="story-quote-panel">
         <span class="quote-mark" aria-hidden="true">&#8220;</span>
-        <p>Where <strong>"Fro"</strong> stands for frozen, and <strong>"Chi"</strong> represents flow, balance, and good energy.</p>
+        <p>Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.</p>
       </div>
     </div>
 

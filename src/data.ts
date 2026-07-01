@@ -135,23 +135,23 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     img: "https://frochi.ae/wp-content/uploads/2025/07/8-1.png"
   },
   {
-    title: "Yogurts",
-    subtitle: "Our Yogurt is your canvas",
+    title: "Environment",
+    subtitle: "Sharing the Chi with the natural World",
     img: "https://frochi.ae/wp-content/uploads/2025/07/1-1.png"
   },
   {
-    title: "Yogurts",
-    subtitle: "Our Yogurt is your canvas",
+    title: "Communi-Chi",
+    subtitle: "Sharing the Chi with local teams, Clubs and charities",
     img: "https://frochi.ae/wp-content/uploads/2025/07/6-1.png"
   },
   {
-    title: "Yogurts",
-    subtitle: "Our Yogurt is your canvas",
+    title: "Chi-Club",
+    subtitle: "Sharing the Chi with our Regs",
     img: "https://frochi.ae/wp-content/uploads/2025/07/7-1.png"
   },
   {
-    title: "Yogurts",
-    subtitle: "Our Yogurt is your canvas",
+    title: "Careers",
+    subtitle: "Elevate your Career with Fro-Chi",
     img: "https://frochi.ae/wp-content/uploads/2025/07/2-1.png"
   }
 ];
