@@ -378,10 +378,10 @@ export default function App() {
   const getSlotProps = (diff: number) => {
     switch (diff) {
       case -2: return { left: "-10%", top: "-9%", rotate: 14, opacity: 0.75, scale: 1.0, zIndex: 5, pointerEvents: "auto" as const };
-      case -1: return { left: "15%", top: "7%", rotate: 7, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
-      case 0: return { left: "40%", top: "23%", rotate: 0, opacity: 1.0, scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
-      case 1: return { left: "65%", top: "39%", rotate: -12, opacity: 0.9, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
-      case 2: return { left: "90%", top: "55%", rotate: -24, opacity: 0.65, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
+      case -1: return { left: "12%", top: "2%", rotate: 8, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
+      case 0: return { left: "38%", top: "23%", rotate: 0, opacity: 1.0, scale: 1.15, zIndex: 15, pointerEvents: "auto" as const };
+      case 1: return { left: "64%", top: "45%", rotate: -8, opacity: 0.95, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
+      case 2: return { left: "88%", top: "66%", rotate: -16, opacity: 0.85, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
       default: return { left: "-20%", top: "-25%", rotate: 20, opacity: 0, scale: 0.9, zIndex: 1, pointerEvents: "none" as const };
     }
   };
@@ -566,7 +566,7 @@ export default function App() {
             <div
               ref={heroActiveCupRef}
               className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] opacity-0 pointer-events-none"
-              style={{ left: "40%", top: "23%", transform: "scale(1.125)" }}
+              style={{ left: "38%", top: "23%", transform: "scale(1.15)" }}
             />
 
 
@@ -574,9 +574,9 @@ export default function App() {
             <div
               className="absolute z-10 w-[clamp(110px,18vw,320px)] aspect-square flex items-center justify-center pointer-events-none"
               style={{
-                left: "40%",
+                left: "38%",
                 top: "23%",
-                transform: "translate(-5%, -5%) scale(1.125)",
+                transform: "translate(-5%, -5%) scale(1.15)",
                 opacity: isDesktopLayout ? Math.max(1 - easedCupProgress * 6.66, 0) : 1
               }}
             >
@@ -634,7 +634,7 @@ export default function App() {
               return (
                 <motion.div
                   key={flavor.id}
-                  className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
+                  className="absolute w-[clamp(140px,22vw,340px)] aspect-[3/4] select-none group"
                   animate={{ left: slot.left, top: slot.top, rotate: slot.rotate, opacity: slot.opacity }}
                   transition={{
                     left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
