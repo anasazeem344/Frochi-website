@@ -377,12 +377,12 @@ export default function App() {
 
   const getSlotProps = (diff: number) => {
     switch (diff) {
-      case -2: return { left: "0%", top: "15%", rotate: 14, opacity: 0.75, scale: 1.0, zIndex: 5, pointerEvents: "auto" as const };
-      case -1: return { left: "25%", top: "22%", rotate: 7, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
-      case 0: return { left: "50%", top: "35%", rotate: 0, opacity: 1.0, scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
-      case 1: return { left: "75%", top: "48%", rotate: -12, opacity: 0.9, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
-      case 2: return { left: "100%", top: "61%", rotate: -24, opacity: 0.65, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
-      default: return { left: "-20%", top: "-25%", rotate: 20, opacity: 0, scale: 0.9, zIndex: 1, pointerEvents: "none" as const };
+      case -2: return { left: "-15%", top: "-9%", rotate: 14, opacity: 0.75, scale: 1.0, zIndex: 5, pointerEvents: "auto" as const };
+      case -1: return { left: "15%", top: "5%", rotate: 7, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
+      case 0: return { left: "41%", top: "23%", rotate: 0, opacity: 1.0, scale: 1.125, zIndex: 15, pointerEvents: "auto" as const };
+      case 1: return { left: "65%", top: "39%", rotate: -12, opacity: 0.9, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
+      case 2: return { left: "90%", top: "55%", rotate: -24, opacity: 0.9, scale: 0.8, zIndex: 25, pointerEvents: "auto" as const };
+      default: return { left: "-20%", top: "-25%", rotate: 20, opacity: 0, scale: 1.0, zIndex: 1, pointerEvents: "none" as const };
     }
   };
 
@@ -454,11 +454,6 @@ export default function App() {
               </a>
             </li>
             <li className="nav-item">
-              <a href="#brand-story" className="nav-link">
-                <span>Our Story</span>
-              </a>
-            </li>
-            <li className="nav-item">
               <a href="#our-flavours" className="nav-link">
                 <span>Flavours</span>
               </a>
@@ -508,11 +503,6 @@ export default function App() {
           <li className="mobile-menu-item">
             <a href="#hero-section" className="mobile-menu-link active" onClick={() => setIsMobileMenuOpen(false)}>
               <span>Home</span>
-            </a>
-          </li>
-          <li className="mobile-menu-item">
-            <a href="#brand-story" className="mobile-menu-link" onClick={() => setIsMobileMenuOpen(false)}>
-              <span>Our Story</span>
             </a>
           </li>
           <li className="mobile-menu-item">
@@ -566,7 +556,7 @@ export default function App() {
             <div
               ref={heroActiveCupRef}
               className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] opacity-0 pointer-events-none"
-              style={{ left: "50%", top: "35%", transform: "translate(-50%, -50%) scale(1.125)" }}
+              style={{ left: "40%", top: "23%", transform: "scale(1.125)" }}
             />
 
 
@@ -574,9 +564,9 @@ export default function App() {
             <div
               className="absolute z-10 w-[clamp(110px,18vw,320px)] aspect-square flex items-center justify-center pointer-events-none"
               style={{
-                left: "50%",
-                top: "35%",
-                transform: "translate(-50%, -50%) scale(1.125)",
+                left: "40%",
+                top: "23%",
+                transform: "translate(-5%, -5%) scale(1.125)",
                 opacity: isDesktopLayout ? Math.max(1 - easedCupProgress * 6.66, 0) : 1
               }}
             >
@@ -634,7 +624,7 @@ export default function App() {
               return (
                 <motion.div
                   key={flavor.id}
-                  className="absolute w-[clamp(140px,22vw,300px)] aspect-[3/4] select-none group"
+                  className="absolute w-[clamp(140px,22vw,340px)] aspect-[3/4] select-none group"
                   animate={{ left: slot.left, top: slot.top, rotate: slot.rotate, opacity: slot.opacity }}
                   transition={{
                     left: isWrapping ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 22 },
@@ -646,8 +636,6 @@ export default function App() {
                     pointerEvents: slot.pointerEvents,
                     x: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.x : 0,
                     y: isCenterActive && isDesktopLayout ? easedCupProgress * offsets.y : 0,
-                    translateX: "-50%",
-                    translateY: "-50%",
                     zIndex: isCenterActive ? 50 : slot.zIndex,
                   }}
                 >
@@ -959,123 +947,6 @@ export default function App() {
       </div>
 
 
-      {/* BRAND STORY & INTEGRITY SEGMENT */}
-      <section id="brand-story" className="relative py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto z-10 border-t-2 border-[#efece2]">
-
-        {/* CENTERED EDITORIAL HEADER — matches the header pattern used by every other section on the site */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="max-w-2xl mx-auto text-center mb-12 sm:mb-16"
-        >
-          <motion.span variants={fadeUpVariant} className="inline-flex items-center gap-2 text-xs font-bold font-mono text-[#82298a] uppercase tracking-widest mb-5">
-            <span className="w-6 h-px bg-[#82298a]" />
-            Our Story
-            <span className="w-6 h-px bg-[#82298a]" />
-          </motion.span>
-
-        </motion.div>
-
-        {/* VISUAL PROOF ROW — photo paired with the brand-meaning quote, height-balanced */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch mb-16 sm:mb-20">
-
-          {/* IMAGE COLUMN */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-            className="lg:col-span-5 relative flex justify-center items-center pt-6 pb-8"
-          >
-            {/* Morphing organic blob backdrop */}
-            <motion.div
-              className="absolute w-[88%] aspect-square bg-gradient-to-br from-[#e8eeae]/60 to-[#82298a]/10 blur-[40px] -z-10"
-              animate={{
-                borderRadius: [
-                  "42% 58% 70% 30% / 45% 45% 55% 55%",
-                  "70% 30% 52% 48% / 60% 40% 60% 40%",
-                  "42% 58% 70% 30% / 45% 45% 55% 55%"
-                ]
-              }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            {/* "Est. 2024" sticker badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.4, rotate: -25 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 13 }}
-              className="absolute -top-3 left-2 sm:-left-4 z-20 bg-[#fbae17] text-[#2C2133] text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-full shadow-lg"
-            >
-              Est. 2024 · Dubai
-            </motion.div>
-
-            <motion.img
-              src="https://frochi.ae/wp-content/uploads/2025/07/team.png"
-              alt="Muhammad and Abdullah Rashid"
-              whileHover={{ rotate: 0, scale: 1.015 }}
-              className="relative z-10 rounded-[2rem] shadow-2xl w-full max-w-md border-4 border-white -rotate-2 transition-transform duration-500 ease-out"
-              referrerPolicy="no-referrer"
-            />
-
-            {/* Founders chip overlapping the bottom-right of the photo */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="absolute -bottom-6 right-2 sm:-right-6 z-20 bg-white rounded-2xl shadow-xl px-4 py-3 max-w-[200px] border border-[#efece2]"
-            >
-              <div className="flex items-center mb-1.5">
-                <span className="w-7 h-7 rounded-full bg-[#82298a] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow">MR</span>
-                <span className="w-7 h-7 -ml-2.5 rounded-full bg-[#fbae17] text-white text-[10px] font-bold flex items-center justify-center border-2 border-white shadow">AR</span>
-              </div>
-              <p className="text-[11px] font-semibold text-gray-700 leading-snug">
-                Muhammad &amp; Abdullah Rashid
-                <span className="block text-[10px] font-normal text-gray-400 mt-0.5">Founders</span>
-              </p>
-            </motion.div>
-          </motion.div>
-
-          {/* QUOTE PANEL — the single, prominent brand-meaning statement */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: 0.1 }}
-            className="lg:col-span-7 relative flex items-center bg-[#fcfbf7] border border-[#efe9dc] rounded-[2rem] px-8 py-12 sm:px-14 sm:py-16 overflow-hidden"
-          >
-            <span className="absolute top-2 left-6 text-[140px] leading-none font-display text-[#82298a]/[0.06] select-none">"</span>
-            <p className="relative text-xl md:text-2xl font-display font-medium italic text-[#82298a] leading-relaxed">
-              Fro-Chi began when Muhammad Rashid and his son Abdullah turned their love for Australian froyo culture into a Dubai original — swirled, probiotic-packed, and made with zero artificial preservatives, one playful flavor at a time.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* FACTS STRIP — closes the section with quick, scannable proof points */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 pt-10 border-t border-[#efece2]"
-        >
-          {[
-            { label: "Founded", value: "2024" },
-            { label: "Heritage", value: "Australian" },
-            { label: "Home", value: "Dubai, UAE" },
-            { label: "Promise", value: "100% Natural" }
-          ].map((stat) => (
-            <motion.div key={stat.label} variants={fadeUpVariant} className="text-center sm:text-left">
-              <span className="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold mb-1">{stat.label}</span>
-              <span className="block text-lg md:text-xl font-display font-bold text-[#2C2133]">{stat.value}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
 
       {/* OUR FLAVOURS — cup showcase (center cup large, side cups smaller, evenly spaced) */}
       <section id="our-flavours" className="relative py-24 px-6 sm:px-10 lg:px-16 overflow-hidden border-t-2 border-[#efece2] z-0">
