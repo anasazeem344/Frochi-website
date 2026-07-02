@@ -253,10 +253,15 @@ export default function App() {
         const heroRect = heroActiveCupRef.current.getBoundingClientRect();
         const targetRect = targetRef.current.getBoundingClientRect();
 
-        // Rect values are relative to current scroll viewport,
-        // their relative difference (offsets) on page is constant
-        const xDiff = targetRect.left - heroRect.left;
-        const yDiff = targetRect.top - heroRect.top - 180;
+        // Calculate center-to-center offsets for perfect mathematical alignment across all viewport widths
+        const heroCenterX = heroRect.left + heroRect.width / 2;
+        const heroCenterY = heroRect.top + heroRect.height / 2;
+        
+        const targetCenterX = targetRect.left + targetRect.width / 2;
+        const targetCenterY = targetRect.top + targetRect.height / 2;
+
+        const xDiff = targetCenterX - heroCenterX;
+        const yDiff = targetCenterY - heroCenterY;
 
         setOffsets({ x: xDiff, y: yDiff });
       }
@@ -380,8 +385,8 @@ export default function App() {
       case -2: return { left: "-10%", top: "-9%", rotate: 14, opacity: 0.75, scale: 1.0, zIndex: 5, pointerEvents: "auto" as const };
       case -1: return { left: "12%", top: "2%", rotate: 8, opacity: 0.95, scale: 1.0, zIndex: 10, pointerEvents: "auto" as const };
       case 0: return { left: "38%", top: "23%", rotate: 0, opacity: 1.0, scale: 1.15, zIndex: 15, pointerEvents: "auto" as const };
-      case 1: return { left: "64%", top: "45%", rotate: -8, opacity: 0.95, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
-      case 2: return { left: "88%", top: "66%", rotate: -16, opacity: 0.85, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
+      case 1: return { left: "64%", top: "40%", rotate: -8, opacity: 0.95, scale: 1.0, zIndex: 20, pointerEvents: "auto" as const };
+      case 2: return { left: "88%", top: "50%", rotate: -16, opacity: 0.85, scale: 0.9, zIndex: 25, pointerEvents: "auto" as const };
       default: return { left: "-20%", top: "-25%", rotate: 20, opacity: 0, scale: 0.9, zIndex: 1, pointerEvents: "none" as const };
     }
   };
