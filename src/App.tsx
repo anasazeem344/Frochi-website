@@ -366,11 +366,12 @@ export default function App() {
 
   const activeFlavor = FLAVORS[activeIdx];
 
-  // Helper to compute the shortest circular difference in range [-2, 2] for 5 flavors
+  // Helper to compute the shortest circular difference in range [-1, 2] for 4 flavors
   const getRelativeDiff = (i: number, active: number) => {
     let diff = i - active;
-    if (diff < -2) diff += FLAVORS.length;
-    if (diff > 2) diff -= FLAVORS.length;
+    const len = FLAVORS.length;
+    if (diff < -1) diff += len;
+    if (diff > 2) diff -= len;
     return diff;
   };
 
@@ -557,11 +558,6 @@ export default function App() {
               <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">15K+</span>
               <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Fans</span>
             </div>
-            <div className="w-px h-6 bg-white/40" />
-            <div className="text-right">
-              <span className="block text-2xl font-bold font-sans leading-none drop-shadow-sm">100%</span>
-              <span className="text-[9px] uppercase tracking-wider font-bold font-sans opacity-90">Natural</span>
-            </div>
           </div>
 
           {/* FULL BLEED MULTI-CUP FLOATING STAGE BACKGROUND/MIDGROUND */}
@@ -668,15 +664,11 @@ export default function App() {
                     }}
                     className="relative w-full h-full flex flex-col items-center cursor-grab active:cursor-grabbing pointer-events-auto"
                   >
-                    <motion.div
-                      animate={{ y: isCenterActive ? [0, 8, 0] : diff === -1 ? [0, -8, 0] : diff === 1 ? [0, -10, 0] : [0, 6, 0] }}
-                      transition={{ y: { duration: isCenterActive ? 3.5 : diff === -1 ? 4.0 : diff === 1 ? 4.5 : 5.0, repeat: Infinity, ease: "easeInOut", delay: index * 0.1 } }}
-                      className="relative w-full h-full flex flex-col items-center"
-                    >
+                    <motion.div className="relative w-full h-full">
                       <img
                         src={flavor.cupImg}
                         alt={flavor.name}
-                        className="w-full h-auto object-contain selection:bg-transparent cursor-pointer z-10 relative"
+                        className="w-full h-full object-contain pointer-events-none select-none transition-shadow duration-300"
                         style={{ filter: isCenterActive ? "drop-shadow(0 25px 35px #82298a60)" : "drop-shadow(0 8px 16px rgba(0,0,0,0.08))" }}
                         referrerPolicy="no-referrer"
                         draggable={false}
@@ -731,16 +723,21 @@ export default function App() {
                     {activeFlavor.description}
                   </p>
 
-                  {/* Micro Nutrients Line */}
-                  <div className="flex items-center gap-4 py-2">
-                    <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#82298a]" />
-                      <span>{activeFlavor.nutritionalInfo.probiotics}</span>
-                    </div>
-                    <div className="bg-white px-3 py-1.5 rounded-full border border-transparent shadow-sm text-[11px] font-mono font-bold text-[#82298a] flex items-center gap-1">
-                      <Clock size={12} className="text-[#82298a]/70" />
-                      <span>{activeFlavor.nutritionalInfo.calories} kcal</span>
-                    </div>
+                  {/* Explore More Button */}
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const target = document.getElementById("our-flavours");
+                        if (target) {
+                          target.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="group inline-flex items-center gap-2 bg-[#82298a] hover:bg-[#6c1d73] active:scale-95 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-md transition-all duration-300 pointer-events-auto cursor-pointer"
+                    >
+                      <span>Explore More</span>
+                      <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
