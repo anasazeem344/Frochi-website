@@ -923,18 +923,10 @@ export default function App() {
                   >
                     <img
                       src={card.img}
-                      alt={card.title}
+                      alt="Gallery Item"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#5a1c61]/95 via-[#5a1c61]/45 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
-                      <h3 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight">
-                        {card.title}
-                      </h3>
-                      <p className="text-xs opacity-90 mt-1 font-sans font-medium">
-                        {card.subtitle}
-                      </p>
-                    </div>
                   </TiltCard>
                 );
               })}
